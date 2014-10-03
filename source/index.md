@@ -18,6 +18,7 @@ includes:
   - kittens
   - errors
   - faq
+  - definitionofterms
 
 search: true
 ---
