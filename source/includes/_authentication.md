@@ -1,4 +1,4 @@
-# Authentication
+# Authentication (Deprecated)
 
 > To authorize, use this code:
 

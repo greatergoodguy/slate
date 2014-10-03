@@ -1,4 +1,4 @@
-# Kittens
+# Kittens (Deprecated)
 
 ## Get All Kittens
 

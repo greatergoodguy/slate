@@ -13,12 +13,15 @@ toc_footers:
 
 includes:
   - introduction
-  - gettingstarted
-  - authentication
-  - kittens
+  - getting_started
+  - get_api_key
+  - apis
+  - sample_code
   - errors
   - faq
-  - definitionofterms
+  - definition_of_terms
+  - authentication
+  - kittens
 
 search: true
 ---
