@@ -229,7 +229,7 @@ Parameter     | Data Type   | Is Required
 > Request
 
 ```shell
-curl --cookie "videobank_sessionid=[VIDEOBANK_SESSIONID]" --request GET https://login.eagleeyenetworks.com/g/list/users
+curl --cookie "videobank_sessionid=[VIDEOBANK_SESSIONID]" --request GET https://login.eagleeyenetworks.com/g/user/list
 ```
 
 > Json Response
@@ -290,7 +290,7 @@ Returns array of arrays, with each sub-array representing a user available to th
 
 ### Response: User Model
 
-Array Index     | Parameter   | Data Type  
+Array Index     | Attribute   | Data Type  
 ---------       | ----------- | -----------
 0               | id          | string
 1               | first_name  | string

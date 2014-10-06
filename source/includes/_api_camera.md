@@ -1060,3 +1060,53 @@ Parameter     | Data Type   | Is Required
 
 <!--===================================================================-->
 ## Get List of Cameras
+
+> Request
+
+```shell
+curl --cookie "videobank_sessionid=[VIDEOBANK_SESSIONID]" --request GET https://login.eagleeyenetworks.com/g/device/list
+```
+
+> Json Response
+
+```json
+```
+
+Returns array of arrays, with each sub-array representing a device available to the user. The 'service_status' attribute either be set to 'ATTD' or 'IGND'. If the service_status is 'ATTD', the camera is attached to a bridge. If the service_status is 'IGND', the camera is unattached from any bridge and is available to be attached. Please note that the ListDevice model definition below has property keys, but that's only for reference purposes since it's actually just a standard array.
+
+### HTTP Request
+
+`GET https://login.eagleeyenetworks.com/g/device/list`
+
+Parameter | Data Type   | Description           
+--------- | ----------- | -----------           
+e         | string      | Camera Id             
+n         | string      | Camera Name           
+t         | string      | Device Type           
+s         | string      | Device Service Status
+
+### Response: Camera Model
+
+Array Index | Attribute       | Data Type  
+---------   | -----------     | -----------
+0           | account_id      | string
+1           | id              | string
+2           | name            | string
+3           | type            | string
+4           | bridges         | ???
+5           | service_status  | string
+6           | permissions     | string
+7           | tags            | array[string]
+8           | guid            | string
+9           | serial_number   | string
+10          | device_status   | int
+11          | timezone        | string
+12          | timezone_utc_offset | int
+13          | is_unsupported  | int
+14          | ip_address      | string
+15          | is_shared       | int
+16          | owner_account_name | string
+17          | is_upnp         | boolean
+18          | video_input     | string
+19          | video_status    | string
+
