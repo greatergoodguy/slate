@@ -13,11 +13,17 @@ toc_footers:
 
 includes:
   - introduction
-  - user
+  - api_authentication
+  - api_user
+  - api_camera
+  - api_bridge
+  - api_asset
+  - api_layout
+  - api_poll
   - apis
-  - sample_code
   - errors
   - faq
+  - sample_code
   - definition_of_terms
 
 search: true
