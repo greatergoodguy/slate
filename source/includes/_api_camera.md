@@ -150,93 +150,834 @@ ROME
 <!--===================================================================-->
 ## Get Camera
 
-```ruby
-require 'kittn'
-
-api = Kittn::APIClient.authorize!('meowmeowmeow')
-api.kittens.get
-```
-
-```python
-import 'kittn'
-
-api = Kittn.authorize('meowmeowmeow')
-api.kittens.get()
-```
+> Request
 
 ```shell
-curl "http://example.com/api/kittens"
-  -H "Authorization: meowmeowmeow"
+curl --cookie "videobank_sessionid=[VIDEOBANK_SESSIONID]" -G https://login.eagleeyenetworks.com/g/device -d id=[DEVICE_ID]
 ```
 
-> The above command returns JSON structured like this:
+> Json Response
 
 ```json
 {
-  "id": "1",
-  "first_name": "John",
-  "last_name": "Doe",
-  "email": "john.doe@fakeemail.com",
-  "owner_account_id": "1",
-  "active_account_id": "1",
-  "uid": "1",
-  "is_superuser": 1,
-  "is_account_superuser": 1,
-  "is_staff": 1,
-  "is_active": 1,
-  "is_pending": 1,
-  "is_master": 1,
-  "is_user_admin": 1,
-  "is_layout_admin": 1,
-  "is_live_video": 1,
-  "is_device_admin": 1,
-  "is_export_video": 1,
-  "is_recorded_video": 1,
-  "street": 
-    [
-      "123 Fake Street", 
-      "Apt #213"
+    "bridges": {
+        "100a9af6": "ATTD"
+    },
+    "camera_info_status_code": 200,
+    "name": "Kitchen",
+    "settings": {
+        "username": "onvif",
+        "bridge": "100a9af6",
+        "share_email": "mcazares+videotest@eagleeyenetworks.com",
+        "roi_names": {},
+        "floor": 16,
+        "alert_notifications": {},
+        "range": 17.983694,
+        "retention_days": 30,
+        "cloud_retention_days": 30,
+        "alert_modes": {},
+        "longitude": -97.740714999999994,
+        "azimuth": 257.47226999999998,
+        "latitude": 30.269064,
+        "password": "securityCameraz",
+        "alert_levels": {},
+        "notes": "",
+        "street_address": "717-799 Brazos Street, Austin, TX 78701, USA"
+    },
+    "camera_settings_status_code": 200,
+    "camera_info": {
+        "bridge": "bf5ce89d-8dbb-4eed-a2a8-60971e6d447e",
+        "camera_state_version": 0,
+        "intf": "Camera LAN",
+        "camera_retention": 2592000000,
+        "tagmap_status_state": 2,
+        "camera_newest": "20141006190516.702",
+        "camera_oldest": "20140906000000.000",
+        "connect": "STRM",
+        "uuid": "c6d11f36-9e63-11e1-a5b0-00408cdf9191",
+        "service": "ATTD",
+        "make": "AXIS",
+        "ipaddr": "*169.254.12.141,10.143.236.65",
+        "ts": "20141006182806.570",
+        "version": "5.40.9.2",
+        "admin_password": null,
+        "esn": "1000f60d",
+        "status": "1966143",
+        "admin_user": null,
+        "register_id": 0,
+        "mac": "00:40:8C:DF:91:91",
+        "proxy": "secondary",
+        "bridgeid": "100a9af6",
+        "now": "20141006210729.065",
+        "class": "camera",
+        "status_hex": "001e003f",
+        "camera_now": "20141006210729.688",
+        "camera_abs_newest": "20141006190516.702",
+        "camera_abs_oldest": "20140906000000.000",
+        "model": "AXIS M1054",
+        "camtype": "ONVIF"
+    },
+    "utcOffset": -18000,
+    "camera_parameters_status_code": 200,
+    "id": "1000f60d",
+    "timezone": "US/Central",
+    "guid": "c6d11f36-9e63-11e1-a5b0-00408cdf9191",
+    "camera_parameters": {
+        "active_settings": {
+            "bandwidth_background": {
+                "max": 10000000000.0,
+                "min": -1000.0,
+                "d": 0.0,
+                "v": 0.0
+            },
+            "preview_jcmp_enable": {
+                "max": 1,
+                "min": 0,
+                "d": 1,
+                "v": 1
+            },
+            "bandwidth_recover": {
+                "max": 10000000000.0,
+                "min": 0.0,
+                "d": 0.0,
+                "v": 0.0
+            },
+            "video_transmit_mode": {
+                "min": [
+                    "always",
+                    "event",
+                    "background",
+                    "on demand"
+                ],
+                "d": "background",
+                "v": "background"
+            },
+            "preview_noise_limit_default": {
+                "max": 16,
+                "min": 2,
+                "d": 16,
+                "v": 16
+            },
+            "video_resolution": {
+                "min": [
+                    "cif",
+                    "std",
+                    "high"
+                ],
+                "d": "high",
+                "v": "high"
+            },
+            "retention_days": {
+                "max": 10000,
+                "min": 1,
+                "d": 14,
+                "v": 30
+            },
+            "bridge_retention_days": {
+                "max": 100000,
+                "min": 0,
+                "d": 0,
+                "v": 0
+            },
+            "stream_stats": {
+                "d": "none",
+                "v": "none"
+            },
+            "motion_edge_expand_ratio": {
+                "max": 0.98999999999999999,
+                "min": 0.001,
+                "d": 0.10000000000000001,
+                "v": 0.10000000000000001
+            },
+            "preview_resolution": {
+                "min": [
+                    "cif",
+                    "std",
+                    "high"
+                ],
+                "d": "cif",
+                "v": "std"
+            },
+            "display_features": {
+                "max": 255,
+                "min": 0,
+                "d": 255,
+                "v": 255
+            },
+            "motion_event_holdoff_ms": {
+                "max": 1000,
+                "min": 0,
+                "d": 300,
+                "v": 300
+            },
+            "retention_max_bytes": {
+                "max": 1000000000000.0,
+                "min": 0,
+                "d": 0.0,
+                "v": 0.0
+            },
+            "active_rois": {
+                "d": {},
+                "v": {}
+            },
+            "video_config": {
+                "d": {
+                    "preview_profile": "een_prvw",
+                    "video_profile": "een_video",
+                    "preview_quality_settings": {
+                        "high": {
+                            "h": 720,
+                            "quality": {
+                                "high": {
+                                    "q": 80,
+                                    "kbps": 1600,
+                                    "fps": 4
+                                },
+                                "med": {
+                                    "q": 60,
+                                    "kbps": 1000,
+                                    "fps": 4
+                                },
+                                "low": {
+                                    "q": 40,
+                                    "kbps": 800,
+                                    "fps": 4
+                                }
+                            },
+                            "w": 1280
+                        },
+                        "std": {
+                            "h": "360",
+                            "quality": {
+                                "high": {
+                                    "q": 80,
+                                    "kbps": 500,
+                                    "fps": 4
+                                },
+                                "med": {
+                                    "q": 60,
+                                    "kbps": 350,
+                                    "fps": 4
+                                },
+                                "low": {
+                                    "q": 40,
+                                    "kbps": 250,
+                                    "fps": 4
+                                }
+                            },
+                            "w": 640
+                        },
+                        "cif": {
+                            "h": "180",
+                            "quality": {
+                                "high": {
+                                    "q": 80,
+                                    "kbps": 200,
+                                    "fps": 4
+                                },
+                                "med": {
+                                    "q": 60,
+                                    "kbps": 150,
+                                    "fps": 4
+                                },
+                                "low": {
+                                    "q": 40,
+                                    "kbps": 100,
+                                    "fps": 4
+                                }
+                            },
+                            "w": 320
+                        }
+                    },
+                    "video_quality_settings": {
+                        "high": {
+                            "h": 720,
+                            "quality": {
+                                "high": {
+                                    "q": 80,
+                                    "kbps": 2000,
+                                    "fps": 30
+                                },
+                                "med": {
+                                    "q": 60,
+                                    "kbps": 1000,
+                                    "fps": 15
+                                },
+                                "low": {
+                                    "q": 40,
+                                    "kbps": 500,
+                                    "fps": 10
+                                }
+                            },
+                            "w": 1280
+                        },
+                        "std": {
+                            "h": "360",
+                            "quality": {
+                                "high": {
+                                    "q": 80,
+                                    "kbps": 600,
+                                    "fps": 30
+                                },
+                                "med": {
+                                    "q": 60,
+                                    "kbps": 400,
+                                    "fps": 15
+                                },
+                                "low": {
+                                    "q": 40,
+                                    "kbps": 200,
+                                    "fps": 10
+                                }
+                            },
+                            "w": 640
+                        },
+                        "cif": {
+                            "h": "180",
+                            "quality": {
+                                "high": {
+                                    "q": 80,
+                                    "kbps": 300,
+                                    "fps": 30
+                                },
+                                "med": {
+                                    "q": 60,
+                                    "kbps": 140,
+                                    "fps": 15
+                                },
+                                "low": {
+                                    "q": 40,
+                                    "kbps": 70,
+                                    "fps": 10
+                                }
+                            },
+                            "w": 320
+                        }
+                    }
+                },
+                "v": {
+                    "preview_profile": "een_prvw",
+                    "video_profile": "een_video",
+                    "preview_quality_settings": {
+                        "high": {
+                            "h": 720,
+                            "quality": {
+                                "high": {
+                                    "q": 80,
+                                    "kbps": 1600,
+                                    "fps": 4
+                                },
+                                "med": {
+                                    "q": 60,
+                                    "kbps": 1000,
+                                    "fps": 4
+                                },
+                                "low": {
+                                    "q": 40,
+                                    "kbps": 800,
+                                    "fps": 4
+                                }
+                            },
+                            "w": 1280
+                        },
+                        "std": {
+                            "h": "360",
+                            "quality": {
+                                "high": {
+                                    "q": 80,
+                                    "kbps": 500,
+                                    "fps": 4
+                                },
+                                "med": {
+                                    "q": 60,
+                                    "kbps": 350,
+                                    "fps": 4
+                                },
+                                "low": {
+                                    "q": 40,
+                                    "kbps": 250,
+                                    "fps": 4
+                                }
+                            },
+                            "w": 640
+                        },
+                        "cif": {
+                            "h": "180",
+                            "quality": {
+                                "high": {
+                                    "q": 80,
+                                    "kbps": 200,
+                                    "fps": 4
+                                },
+                                "med": {
+                                    "q": 60,
+                                    "kbps": 150,
+                                    "fps": 4
+                                },
+                                "low": {
+                                    "q": 40,
+                                    "kbps": 100,
+                                    "fps": 4
+                                }
+                            },
+                            "w": 320
+                        }
+                    },
+                    "video_quality_settings": {
+                        "high": {
+                            "h": 720,
+                            "quality": {
+                                "high": {
+                                    "q": 80,
+                                    "kbps": 2000,
+                                    "fps": 30
+                                },
+                                "med": {
+                                    "q": 60,
+                                    "kbps": 1000,
+                                    "fps": 15
+                                },
+                                "low": {
+                                    "q": 40,
+                                    "kbps": 500,
+                                    "fps": 10
+                                }
+                            },
+                            "w": 1280
+                        },
+                        "std": {
+                            "h": "360",
+                            "quality": {
+                                "high": {
+                                    "q": 80,
+                                    "kbps": 600,
+                                    "fps": 30
+                                },
+                                "med": {
+                                    "q": 60,
+                                    "kbps": 400,
+                                    "fps": 15
+                                },
+                                "low": {
+                                    "q": 40,
+                                    "kbps": 200,
+                                    "fps": 10
+                                }
+                            },
+                            "w": 640
+                        },
+                        "cif": {
+                            "h": "180",
+                            "quality": {
+                                "high": {
+                                    "q": 80,
+                                    "kbps": 300,
+                                    "fps": 30
+                                },
+                                "med": {
+                                    "q": 60,
+                                    "kbps": 140,
+                                    "fps": 15
+                                },
+                                "low": {
+                                    "q": 40,
+                                    "kbps": 70,
+                                    "fps": 10
+                                }
+                            },
+                            "w": 320
+                        }
+                    }
+                }
+            },
+            "video_capture_mode": {
+                "min": [
+                    "always",
+                    "event"
+                ],
+                "d": "event",
+                "v": "event"
+            },
+            "motion_noise_filter": {
+                "max": 1.0,
+                "min": 0.0,
+                "d": 0.69999999999999996,
+                "v": 0.69999999999999996
+            },
+            "motion_event_holdon_ms": {
+                "max": 1000,
+                "min": 0,
+                "d": 300,
+                "v": 300
+            },
+            "preview_realtime_bandwidth": {
+                "max": 100000000.0,
+                "min": 8000.0,
+                "d": 50000.0,
+                "v": 400000.0
+            },
+            "motion_snap_size_ratio": {
+                "max": 0.98999999999999999,
+                "min": 0.0001,
+                "d": 0.001,
+                "v": 0.001
+            },
+            "preview_history_depth_ms": {
+                "max": 32000,
+                "min": 1000,
+                "d": 4000,
+                "v": 4000
+            },
+            "encryption_type": {
+                "max": 1,
+                "min": 0,
+                "d": 0,
+                "v": 0
+            },
+            "event_postroll_ms": {
+                "max": 5000,
+                "min": 0,
+                "d": 1000,
+                "v": 1000
+            },
+            "alerts": {
+                "d": {},
+                "v": {}
+            },
+            "preview_interval_ms": {
+                "max": 16000,
+                "min": 250,
+                "d": 1000,
+                "v": 1000
+            },
+            "motion_snap_age_threshold_ms": {
+                "max": 2000,
+                "min": 100,
+                "d": 200,
+                "v": 200
+            },
+            "preview_key_frame_hold_ms": {
+                "max": 3600000,
+                "min": 30000,
+                "d": 1800000,
+                "v": 1800000
+            },
+            "display_width": {
+                "max": 64000,
+                "min": 80,
+                "d": 320,
+                "v": 320
+            },
+            "preview_min_gop_ms": {
+                "max": 180000,
+                "min": 1000,
+                "d": 4000,
+                "v": 4000
+            },
+            "preview_first_frame_delta_target": {
+                "max": 0.98999999999999999,
+                "min": 0.01,
+                "d": 0.25,
+                "v": 0.25
+            },
+            "motion_logmask": {
+                "max": 7,
+                "min": 0,
+                "d": 0,
+                "v": 0
+            },
+            "preview_log_mask": {
+                "max": 15,
+                "min": 0,
+                "d": 0,
+                "v": 0
+            },
+            "local_retention_days": {
+                "max": -1,
+                "min": -1,
+                "d": -1,
+                "v": -1
+            },
+            "preview_noise_limit_min": {
+                "max": 16,
+                "min": 2,
+                "d": 3,
+                "v": 3
+            },
+            "motion_hold_interval": {
+                "max": 120.0,
+                "min": 0.0,
+                "d": 5.0,
+                "v": 5.0
+            },
+            "stream_stats_present_only": {
+                "max": 1,
+                "min": 0,
+                "d": 1,
+                "v": 1
+            },
+            "active_alerts": {
+                "d": {},
+                "v": {}
+            },
+            "motion_weights": {
+                "max": 64,
+                "length": 8,
+                "min": 1,
+                "d": [
+                    8,
+                    4,
+                    2,
+                    1,
+                    1,
+                    1,
+                    1,
+                    1
+                ],
+                "v": [
+                    "8",
+                    "4",
+                    "2",
+                    "1",
+                    "1",
+                    "1",
+                    "1",
+                    "1"
+                ]
+            },
+            "preview_min_limit_change_ms": {
+                "max": 500000,
+                "min": 2000,
+                "d": 10000,
+                "v": 10000
+            },
+            "preview_transmit_mode": {
+                "min": [
+                    "always",
+                    "event",
+                    "background",
+                    "on demand"
+                ],
+                "d": "always",
+                "v": "always"
+            },
+            "bandwidth_demand": {
+                "max": 10000000000.0,
+                "min": 0.0,
+                "d": 0.0,
+                "v": 0.0
+            },
+            "audio_enable": {
+                "d": false,
+                "v": true
+            },
+            "video_bandwidth_factor": {
+                "max": 64,
+                "min": 0,
+                "d": 0,
+                "v": 0
+            },
+            "shaping_mode": {
+                "max": 127,
+                "min": 0,
+                "d": 31,
+                "v": 31
+            },
+            "display_name": {
+                "d": "none",
+                "v": "none"
+            },
+            "display_height": {
+                "max": 64000,
+                "min": 80,
+                "d": 180,
+                "v": 180
+            },
+            "preview_compress_keyframes": {
+                "max": 1,
+                "min": 0,
+                "d": 0,
+                "v": 0
+            },
+            "motion_snap_push_min_delay_ms": {
+                "max": 5000,
+                "min": 1000,
+                "d": 2000,
+                "v": 2000
+            },
+            "motion_size_ratio": {
+                "max": 0.98999999999999999,
+                "min": 0.0001,
+                "d": 0.001,
+                "v": 0.001
+            },
+            "video_quality": {
+                "min": [
+                    "low",
+                    "med",
+                    "high"
+                ],
+                "d": "med",
+                "v": "med"
+            },
+            "video_source_flip": {
+                "d": false,
+                "v": false
+            },
+            "motion_sensitivity": {
+                "max": 1.0,
+                "min": 0.0,
+                "d": 0.80000000000000004,
+                "v": 0.80000000000000004
+            },
+            "motion_size_metric_active": {
+                "max": 1,
+                "min": 0,
+                "d": 0,
+                "v": 0
+            },
+            "camera_on": {
+                "max": 1,
+                "min": 0,
+                "d": 1,
+                "v": 1
+            },
+            "motion_snap_excellent_hold_ms": {
+                "max": 5000,
+                "min": 100,
+                "d": 1000,
+                "v": 1000
+            },
+            "cloud_retention_days": {
+                "max": 365,
+                "min": 1,
+                "d": 14,
+                "v": 30
+            },
+            "video_source_bounds": {
+                "max": [
+                    1440,
+                    900,
+                    1440,
+                    900
+                ],
+                "min": [
+                    0,
+                    0,
+                    0,
+                    0
+                ],
+                "d": [
+                    0,
+                    0,
+                    1440,
+                    900
+                ],
+                "v": [
+                    0,
+                    0,
+                    1440,
+                    900
+                ]
+            },
+            "rois": {
+                "d": {},
+                "v": {}
+            },
+            "preview_max_gop_ms": {
+                "max": 180000,
+                "min": 5000,
+                "d": 30000,
+                "v": 30000
+            },
+            "retention_priority": {
+                "max": 10000,
+                "min": 1,
+                "d": 100,
+                "v": 100
+            },
+            "preview_noise_change_threshold": {
+                "max": 64,
+                "min": 1,
+                "d": 2,
+                "v": 2
+            },
+            "preview_quality": {
+                "min": [
+                    "low",
+                    "med",
+                    "high"
+                ],
+                "d": "med",
+                "v": "med"
+            },
+            "motion_expand_ratio": {
+                "max": 0.98999999999999999,
+                "min": 0.001,
+                "d": 0.10000000000000001,
+                "v": 0.10000000000000001
+            },
+            "motion_boxes_metric_active": {
+                "max": 1,
+                "min": 0,
+                "d": 0,
+                "v": 0
+            },
+            "event_preroll_ms": {
+                "max": 5000,
+                "min": 0,
+                "d": 1000,
+                "v": 1000
+            },
+            "preview_queue_ms": {
+                "max": 20000,
+                "min": 1000,
+                "d": 10000,
+                "v": 10000
+            }
+        },
+        "active_filters": [
+            "user_user"
+        ],
+        "user_settings": {
+            "versions": {},
+            "settings": {
+                "preview_realtime_bandwidth": 400000,
+                "retention_days": 30,
+                "cloud_retention_days": 30,
+                "preview_resolution": "std",
+                "audio_enable": true,
+                "motion_weights": [
+                    "8",
+                    "4",
+                    "2",
+                    "1",
+                    "1",
+                    "1",
+                    "1",
+                    "1"
+                ]
+            },
+            "schedules": {}
+        }
+    },
+    "tags": [
+        "austin",
+        "kitchen"
     ],
-  "city": "Awwstin",
-  "state": "Techsas",
-  "country": "United States of the Earth",
-  "postal_code": "00000",
-  "phone": "1-800-DO-NOT-CALL-THIS-NUMBER",
-  "mobile_phone": "1-800-SERIOUSLY-DO-NOT-CALL-THIS-NUMBER",
-  "utc_offset": 0,
-  "timezone": "UTC",
-  "last_login": "20140101090000.000",
-  "alternate_email": "john.doe@superfakeemail.com",
-  "sms_phone": "1-800-DO-NOT-CALL-THIS-NUMBER",
-  "is_sms_include_picture": 1,
-  "json": "",
-  "camera_access": 
-    [
-      "camera_id 1", 
-      "camera_id 2", 
-      "camera_id 3", 
-    ],
-  "layouts": 
-    [
-      "layout_id 1", 
-      "layout_id 2", 
-      "layout_id 3", 
-    ],
-  "is_notify_enable": 1
+    "permissions": "swr"
 }
 ```
 
-Returns user object by ID. Not passing an ID will return the current authorized user.
+Returns camera object by ID
 
 ### HTTP Request
 
-`GET https://login.eagleeyenetworks.com/g/user`
+`GET https://login.eagleeyenetworks.com/g/device`
 
-### Query Parameters
-
-Parameter     | Data Type   | Description
----------     | ----------- | -----------
-id            | string      | User ID
+Parameter     | Data Type   | Is Required
+---------     | ----------- | ----------- 
+id            | string      | false
 
 <!--===================================================================-->
 ## Create Camera

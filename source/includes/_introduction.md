@@ -4,8 +4,6 @@ The Eagle Eye Video API is a comprehensive REST based API for recording, indexin
 
 We have language bindings in Shell, Java, and Objective C! You can view code examples in the dark area to the right, and you can switch the programming language of the examples with the tabs in the top right.
 
-This example API documentation page was created with [Slate](http://github.com/tripit/slate). Feel free to edit it and use it as a base for your own API's documentation.
-
 ## Getting Started
 
 The Eagle Eye Video API allows you to securely record, manage, and playback video from any camera, any place, any time.  A robust annotation interface and smart bandwidth management helps you turn terabytes of raw video into useful data.
