@@ -977,59 +977,86 @@ Returns camera object by ID
 
 Parameter     | Data Type   | Is Required
 ---------     | ----------- | ----------- 
-id            | string      | false
+name          | string      | true
 
 <!--===================================================================-->
-## Create Camera
+## Add Camera to Bridge
 
-```ruby
-require 'kittn'
-
-api = Kittn::APIClient.authorize!('meowmeowmeow')
-api.kittens.get(2)
-```
-
-```python
-import 'kittn'
-
-api = Kittn.authorize('meowmeowmeow')
-api.kittens.get(2)
-```
+> Request
 
 ```shell
-curl "http://example.com/api/kittens/3"
-  -H "Authorization: meowmeowmeow"
+curl --cookie "videobank_sessionid=[VIDEOBANK_SESSIONID]" -X PUT -v -H "content-type: application/json" https://login.eagleeyenetworks.com/g/device -d '{"name":"[NAME]","utcOffset":[UTC_OFFSET],"settings":{"bridge":"[BRIDGE_ID]","guid":"[CAMERA_GUID]","username":"","password":""}}'
 ```
 
-> The above command returns JSON structured like this:
+> Json Response
 
 ```json
 {
-  "id": 2,
-  "name": "Isis",
-  "breed": "unknown",
-  "fluffiness": 5,
-  "cuteness": 10
+  "id": "100c339a"
 }
 ```
 
-Creates a new User
+Adds an Unattached Camera to the Bridge
 
 ### HTTP Request
 
-`PUT https://login.eagleeyenetworks.com/g/user`
+`PUT https://login.eagleeyenetworks.com/g/device`
 
-### URL Parameters
-
-Parameter | Description
---------- | -----------
-ID | The ID of the cat to retrieve
+Parameter | Data Type     | Description | Is Required
+--------- | -----------   | ----------- | -----------
+name      | string        | Camera Name | true
+settings  | json          | Misc Settings | true
+timezone  | string        | If unspecified, this will default to the camera’s Bridge timezone | 
+tags      | array[string] | Array of strings, which each string representing a "tag" |
 
 <!--===================================================================-->
 ## Update Camera
 
+> Request
+
+```shell
+curl --cookie "videobank_sessionid=[VIDEOBANK_SESSIONID]" -X POST -v -H "content-type: application/json" https://login.eagleeyenetworks.com/g/device -d '{"id": "[DEVICE_ID], "name": "[NAME]"}'
+```
+
+> Json Response
+
+```json
+{
+  "id": "100c339a"
+}
+```
+
+### HTTP Request
+
+`POST https://login.eagleeyenetworks.com/g/device`
+
+Parameter                 | Data Type     | Description   | Is Required
+---------                 | -----------   | -----------   | -----------
+**id**                    | string        | Camera Id     | true
+name                      | string        | Camera Name   |
+timezone                  | strings       | If unspecified, this will default to the camera’s Bridge timezone | 
+tags                      | array[string] | Array of strings, which each string representing a "tag" |
+settings                  | json          | Misc Settings |
+camera_parameters_add     | json          | JSON object of camera parameters/settings to add/update |
+camera_parameters_delete  | json          | JSON object of camera parameters/settings to delete |
+
+
 <!--===================================================================-->
 ## Delete Camera
+
+> Request
+
+```shell
+curl --cookie "videobank_sessionid=[VIDEOBANK_SESSIONID]" -X DELETE -v -H "content-type: application/json" https://login.eagleeyenetworks.com/g/device -d "id=[CAMERA_ID]" -G
+```
+
+### HTTP Request
+
+`DELETE https://login.eagleeyenetworks.com/g/device`
+
+Parameter     | Data Type   | Is Required
+---------     | ----------- | -----------
+**id**        | string      | true
 
 <!--===================================================================-->
 ## Get List of Cameras

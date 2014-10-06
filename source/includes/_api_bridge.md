@@ -141,7 +141,7 @@ Parameter | Description
 ID | The ID of the cat to retrieve
 
 <!--===================================================================-->
-## Update Bridge
+## Add Bridge
 
 <!--===================================================================-->
 ## Delete Bridge
