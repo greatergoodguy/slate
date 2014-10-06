@@ -225,3 +225,76 @@ Parameter     | Data Type   | Is Required
 
 <!--===================================================================-->
 ## Get List of Users
+
+> Request
+
+```shell
+curl --cookie "videobank_sessionid=[VIDEOBANK_SESSIONID]" --request GET https://login.eagleeyenetworks.com/g/list/users
+```
+
+> Json Response
+
+```json
+[
+    [
+        "ca0555c7",
+        "Katherine",
+        "Xiao",
+        "katherine.xiao@fakeemail.com",
+        [
+            "export_video",
+            "recorded_video",
+            "live_video",
+            "device_admin",
+            "layout_admin",
+            "account_superuser",
+            "user_admin",
+            "active"
+        ],
+        "20140929154619.000"
+    ],
+    [
+        "ca00783b",
+        "George",
+        "Adams",
+        "george.adams@fakeemail.com",
+        [
+            "export_video",
+            "recorded_video",
+            "live_video",
+            "active"
+        ],
+        "20140716205645.000"
+    ],
+    [
+        "ca09a73b",
+        "Tom",
+        "Yu",
+        "tom.yu@fakeemail.com",
+        [
+            "export_video",
+            "recorded_video",
+            "live_video",
+            "active"
+        ],
+        "20140812213038.000"
+    ]
+]
+```
+
+Returns array of arrays, with each sub-array representing a user available to the user. Please note that the ListUser model definition below has property keys, but that's only for reference purposes since it's actually just a standard array.
+
+### HTTP Request
+
+`GET https://login.eagleeyenetworks.com/g/user/list`
+
+### Response: User Model
+
+Array Index     | Parameter   | Data Type  
+---------       | ----------- | -----------
+0               | id          | string
+1               | first_name  | string
+2               | last_name   | string
+3               | email       | string
+4               | permissions | array[string]
+5               | last_login  | string
