@@ -34,12 +34,10 @@ curl --request POST https://login.eagleeyenetworks.com/g/aaa/authenticate --data
 
 `POST https://login.eagleeyenetworks.com/g/aaa/authenticate`
 
-### Query Parameters
-
-Parameter     | Data Type   
----------     | ----------- 
-username      | string      
-password      | string      
+Parameter   	| Data Type   | Is Required
+---------   	| ----------- | ----------- 
+**username** 	| string      | true
+**password** 	| string      | true
 
 
 ## Step 2: Authorize
@@ -127,8 +125,6 @@ curl -D - --request POST https://login.eagleeyenetworks.com/g/aaa/authorize --da
 
 `POST https://login.eagleeyenetworks.com/g/aaa/authorize`
 
-### Query Parameters
-
-Parameter   	| Data Type   
----------		| ----------- 
-token      		| string      
+Parameter   | Data Type		| Is Required
+---------	| -----------   | ----------- 
+**token**   | string      	| true
