@@ -2,10 +2,9 @@
 title: API Reference
 
 language_tabs:
-  - shell
-  - ruby
-  - python
-  - java
+  - shell: cURL
+  - java: Android
+  - objc: iOS
 
 toc_footers:
   - <a href='#'>Sign Up for a Developer Key</a>
