@@ -129,13 +129,11 @@ curl "http://example.com/api/kittens/3"
 }
 ```
 
-This endpoint retrieves a specific kitten.
-
-<aside class="warning">If you're not using an administrator API key, note that some kittens will return 403 Forbidden if they are hidden for admins only.</aside>
+Creates a new User
 
 ### HTTP Request
 
-`GET http://example.com/kittens/<ID>`
+`PUT https://login.eagleeyenetworks.com/g/user`
 
 ### URL Parameters
 
