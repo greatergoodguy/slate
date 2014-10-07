@@ -10,7 +10,7 @@ If a user isn't requesting their own user record, these apis requires SuperUser 
 > Request
 
 ```shell
-curl --cookie "videobank_sessionid=[VIDEOBANK_SESSIONID]" -G https://login.eagleeyenetworks.com/g/user
+curl -G https://login.eagleeyenetworks.com/g/user -d "A=[VIDEOBANK_SESSIONID]"
 
 or
 
@@ -219,9 +219,9 @@ Deletes a user
 
 `DELETE https://login.eagleeyenetworks.com/g/user`
 
-Parameter     | Data Type   | Is Required
+Parameter     | Data Type   | Description
 ---------     | ----------- | -----------
-**id**        | string      | true
+**id**        | string      | User Id
 
 <!--===================================================================-->
 ## Get List of Users

@@ -153,7 +153,7 @@ ROME
 > Request
 
 ```shell
-curl --cookie "videobank_sessionid=[VIDEOBANK_SESSIONID]" -G https://login.eagleeyenetworks.com/g/device -d id=[DEVICE_ID]
+curl -G https://login.eagleeyenetworks.com/g/device -d "A=[VIDEOBANK_SESSIONID]&id=[CAMERA_ID]"
 ```
 
 > Json Response
@@ -969,15 +969,15 @@ curl --cookie "videobank_sessionid=[VIDEOBANK_SESSIONID]" -G https://login.eagle
 }
 ```
 
-Returns camera object by ID
+Returns camera object by id
 
 ### HTTP Request
 
 `GET https://login.eagleeyenetworks.com/g/device`
 
-Parameter     | Data Type   | Is Required
+Parameter     | Data Type   | Description
 ---------     | ----------- | ----------- 
-name          | string      | true
+id            | string      | Camera Id
 
 <!--===================================================================-->
 ## Add Camera to Bridge
@@ -1015,7 +1015,7 @@ tags      | array[string] | Array of strings, which each string representing a "
 > Request
 
 ```shell
-curl --cookie "videobank_sessionid=[VIDEOBANK_SESSIONID]" -X POST -v -H "content-type: application/json" https://login.eagleeyenetworks.com/g/device -d '{"id": "[DEVICE_ID], "name": "[NAME]"}'
+curl --cookie "videobank_sessionid=[VIDEOBANK_SESSIONID]" -X POST -v -H "content-type: application/json" https://login.eagleeyenetworks.com/g/device -d '{"id": "[CAMERA_ID], "name": "[NAME]"}'
 ```
 
 > Json Response
@@ -1040,7 +1040,6 @@ settings                  | json          | Misc Settings |
 camera_parameters_add     | json          | JSON object of camera parameters/settings to add/update |
 camera_parameters_delete  | json          | JSON object of camera parameters/settings to delete |
 
-
 <!--===================================================================-->
 ## Delete Camera
 
@@ -1054,9 +1053,9 @@ curl --cookie "videobank_sessionid=[VIDEOBANK_SESSIONID]" -X DELETE -v -H "conte
 
 `DELETE https://login.eagleeyenetworks.com/g/device`
 
-Parameter     | Data Type   | Is Required
+Parameter     | Data Type   | Description
 ---------     | ----------- | -----------
-**id**        | string      | true
+**id**        | string      | Camera Id
 
 <!--===================================================================-->
 ## Get List of Cameras
@@ -1070,6 +1069,117 @@ curl --cookie "videobank_sessionid=[VIDEOBANK_SESSIONID]" --request GET https://
 > Json Response
 
 ```json
+[
+    [
+        "00004206",
+        "100d88a8",
+        "Main",
+        "bridge",
+        [
+            [
+                "100f2fa1",
+                "ATTD"
+            ],
+            [
+                "100c339a",
+                "ATTD"
+            ]
+        ],
+        "ATTD",
+        "swr",
+        [],
+        "bceb04ec-8b24-4aee-a09a-8479d856e81c",
+        "EEN-BR300-08480",
+        1048576,
+        "US/Pacific",
+        -25200,
+        1,
+        "",
+        0,
+        "Greater Good",
+        false,
+        null,
+        null,
+        [
+            null,
+            null,
+            null,
+            null,
+            null,
+            null
+        ]
+    ],
+    [
+        "00004206",
+        "100c339a",
+        "New Camera 1",
+        "camera",
+        [
+            [
+                "100d88a8",
+                "ATTD"
+            ]
+        ],
+        "ATTD",
+        "swr",
+        [],
+        "1e574020-4e33-11e3-9b40-2504532f70b4",
+        "4242325013460008",
+        1441847,
+        "US/Pacific",
+        -25200,
+        0,
+        "*10.143.14.254",
+        0,
+        "Greater Good",
+        false,
+        null,
+        null,
+        [
+            null,
+            null,
+            null,
+            null,
+            null,
+            null
+        ]
+    ],
+    [
+        "00004206",
+        "100f2fa1",
+        "Dome",
+        "camera",
+        [
+            [
+                "100d88a8",
+                "ATTD"
+            ]
+        ],
+        "ATTD",
+        "swr",
+        [],
+        "3b3efd60-432d-11e3-b19b-11ac28dbc101",
+        "4016825013440034",
+        1441847,
+        "US/Pacific",
+        -25200,
+        0,
+        "*10.143.217.117",
+        0,
+        "Greater Good",
+        false,
+        null,
+        null,
+        [
+            null,
+            null,
+            null,
+            null,
+            "",
+            null
+        ]
+    ]
+]
 ```
 
 Returns array of arrays, with each sub-array representing a device available to the user. The 'service_status' attribute either be set to 'ATTD' or 'IGND'. If the service_status is 'ATTD', the camera is attached to a bridge. If the service_status is 'IGND', the camera is unattached from any bridge and is available to be attached. Please note that the ListDevice model definition below has property keys, but that's only for reference purposes since it's actually just a standard array.
@@ -1093,7 +1203,7 @@ Array Index | Attribute       | Data Type
 1           | id              | string
 2           | name            | string
 3           | type            | string
-4           | bridges         | ???
+4           | bridges         | json
 5           | service_status  | string
 6           | permissions     | string
 7           | tags            | array[string]

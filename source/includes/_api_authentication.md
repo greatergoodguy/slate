@@ -19,7 +19,7 @@ Login is a 2 step process: Authenticate, then Authorize with the token returned 
 > Request
 
 ```shell
-curl --request POST https://login.eagleeyenetworks.com/g/aaa/authenticate --data 'username=[USERNAME]&password=[PASSWORD]'
+curl --request POST https://login.eagleeyenetworks.com/g/aaa/authenticate --data "username=[USERNAME]&password=[PASSWORD]"
 ```
 
 > Json Response
@@ -34,10 +34,10 @@ curl --request POST https://login.eagleeyenetworks.com/g/aaa/authenticate --data
 
 `POST https://login.eagleeyenetworks.com/g/aaa/authenticate`
 
-Parameter   	| Data Type   | Is Required
----------   	| ----------- | ----------- 
-**username** 	| string      | true
-**password** 	| string      | true
+Parameter   	| Data Type   
+---------   	| ----------- 
+**username** 	| string      
+**password** 	| string     
 
 
 ## Step 2: Authorize
@@ -125,6 +125,6 @@ curl -D - --request POST https://login.eagleeyenetworks.com/g/aaa/authorize --da
 
 `POST https://login.eagleeyenetworks.com/g/aaa/authorize`
 
-Parameter   | Data Type		| Is Required
----------	| -----------   | ----------- 
-**token**   | string      	| true
+Parameter   | Data Type		
+---------	| -----------   
+**token**   | string      	
