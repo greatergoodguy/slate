@@ -2,14 +2,15 @@
 
 Error Code | Meaning
 ---------- | -------
-400 | Bad Request -- Your request sucks
-401 | Unauthorized -- Your API key is wrong
-403 | Forbidden -- The kitten requested is hidden for administrators only
-404 | Not Found -- The specified kitten could not be found
-405 | Method Not Allowed -- You tried to access a kitten with an invalid method
-406 | Not Acceptable -- You requested a format that isn't json
-410 | Gone -- The kitten requested has been removed from our servers
-418 | I'm a teapot
-429 | Too Many Requests -- You're requesting too many kittens! Slown down!
-500 | Internal Server Error -- We had a problem with our server. Try again later.
-503 | Service Unavailable -- We're temporarially offline for maintanance. Please try again later.
+200 | The request was fulfilled successfully
+202 | The request has been accepted for processing, but the processing has not been completed
+400 | The request had bad syntax or was inherently impossible to be satisfied
+401 | Supplied credentials are not valid
+402 | Account is suspended
+403 | Forbidden due to the user missing the necessary privileges
+406 | Realm is invalid due to not being a root realm
+409 | Email address has already been registered for the specified realm
+412 | User is disabled
+460 | Account is inactive
+461 | Account is pending
+462 | User is pending
