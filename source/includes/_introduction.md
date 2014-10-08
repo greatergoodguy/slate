@@ -19,3 +19,8 @@ You will have to verify your email address to create your Developer Account. You
 You may also want to purchase a development hardware kit from us (so you can connect some cameras). These are available at a large discount for developers. You can get an Eagle Eye Bridge and even some cameras from us for development and testing. Just email us for more info and pricing.
 
 [Create Developer Account](https://login.eagleeyenetworks.com/api_signup.html)
+
+## Key Terms
+
+**Timestamps**
+<br>All Assets have attached a Timestamp. The Timestamp records when the Asset happened. Timestamps are always in UTC and maintained to the nearest millisecond. Timestamps are rendered in text as YYYYMMDDhhmmss.mmm.
