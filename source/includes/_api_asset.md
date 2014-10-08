@@ -71,24 +71,36 @@ The H264 codec has the concept of profiles and levels to convey whether a playba
 > Request
 
 ```shell
+curl -v -G "https://login.eagleeyenetworks.com/asset/prev/image.jpeg?id=[CAMERA_ID];timestamp=[TIMESTAMP];quality=[QUALITY];asset_class=[ASSET_CLASS];A=[VIDEOBANK_SESSIONID]"
 ```
 
-> Json Response
+Get an image jpeg based on the specified timestamp. This will return binary image data in JPEG format. 
 
-```json
-```
+Headers: cache control headers to allow asset caching if no now relative:
 
-Returns user object by ID. Not passing an ID will return the current authorized user.
+  * x-ee-timestamp: type-timestamp specifies asset type and timestamp of the provided image. Type is one of 'video', 'preview', 'thumb', 'event'. 
+  * x-ee-prev: [type-timestamp | unknown ] of previous image matching the class filter OR 'unknown' if the previous image was complex to figure out. 
+  * x-ee-next: [type-timestamp | unknown ] as with x-ee-prev, but specifying the following image. 
+content-type: image/jpeg 
+  * location: /asset/asset/image.jpeg?t=20120917213405.700;q=low;c=thumb (identifies actual asset time of image in response).Returns user object by ID. Not passing an ID will return the current authorized user.
 
 ### HTTP Request
 
-`GET https://login.eagleeyenetworks.com/g/user`
+`GET https://login.eagleeyenetworks.com/asset/asset/image.jpeg`
+<br> Get the image at the specified timestamp
 
-### Query Parameters
+`GET https://login.eagleeyenetworks.com/asset/prev/image.jpeg`
+<br> Get the first image before the specified timestamp
 
-Parameter     | Data Type   | Description
----------     | ----------- | -----------
-id            | string      | User ID
+`GET https://login.eagleeyenetworks.com/asset/after/image.jpeg`
+<br> Get the first image after the specified timestamp
+
+Parameter         | Data Type     | Description   | Is Required
+---------         | -----------   | -----------   | -----------
+**id**            | string        | Camera Id     | true
+**timestamp**     | string        | Timestamp in EEN format: YYYYMMDDHHMMSS.NNN | true
+**asset_class**   | string, enum  | Asset class of the image <br><br>enum: all, pre, thumb | true
+quality           | string, enum  | Quality of image <br><br>enum: low, med, high |
 
 <!--===================================================================-->
 ## Get Video
@@ -96,6 +108,7 @@ id            | string      | User ID
 > Request
 
 ```shell
+curl -v -G "https://login.eagleeyenetworks.com/asset/play/video.flv?id=[CAMERA_ID];start_timestamp=[START_TIMESTAMP];end_timestamp=[END_TIMESTAMP];A=[VIDEOBANK_SESSIONID]"
 ```
 
 Returns a video stream in the requested format. Formats include
@@ -120,11 +133,68 @@ time_offset               | string        | Start the video stream N ms into the
 <!--===================================================================-->
 ## Get List of Images
 
+> Request
+
+```shell
+curl -v -G "https://login.eagleeyenetworks.com/asset/list/image?start_timestamp=[START_TIMESTAMP];end_timestamp=[END_TIMESTAMP];id=[CAMERA_ID];asset_class=[ASSET_CLASS];A=[VIDEOBANK_SESSIONID]"
+```
+
+> Json Response
+
+```json
+[{"t":"PRFR","s":"20141001000000.045"},{"t":"PRFR","s":"20141001000001.045"},{"t":"PRFR","s":"20141001000002.064"},{"t":"PRFR","s":"20141001000003.064"},{"t":"PRFR","s":"20141001000004.064"},{"t":"PRFR","s":"20141001000005.063"},{"t":"PRFR","s":"20141001000006.063"},{"t":"PRFR","s":"20141001000007.096"}]
+```
+
+This returns a list of objects, where each object contains the timestamp and type of an image jpeg. When formatting the request, either the 'end_timestamp' or 'count' parameter is required.
+
+### HTTP Request
+
+`GET https://login.eagleeyenetworks.com/asset/list/image`
+
+Parameter           | Data Type     | Description   | Is Required
+---------           | -----------   | -----------   | -----------
+**id**              | string        | Camera Id     | true
+**start_timestamp** | string        | Start Timestamp in EEN format: YYYYMMDDHHMMSS.NNN | true
+**asset_class**     | string, enum  | Asset class of the image <br><br>enum: all, pre, thumb | true
+end_timestamp       | string        | End Timestamp in EEN format: YYYYMMDDHHMMSS.NNN
+count               | int           | Used instead or with an 'end_timestamp' argument. If used with an 'end_timestamp' argument, the count is a limit on the number of entries to return, starting at the starting timestamp. If used without the e argument, returns N entries. Support negative value, which returns N entries before, sorted in reverse order - example -5 return 5 events previous to the specified time.
+
 <!--===================================================================-->
 ## Get List of Videos
+
+> Request
+
+```shell
+curl -v -G "https://login.eagleeyenetworks.com/asset/list/video?start_timestamp=[START_TIMESTAMP];end_timestamp=[END_TIMESTAMP];id=[CAMERA_ID];options=coalesce;A=[VIDEOBANK_SESSIONID]"
+```
+
+> Json Response
+
+```json
+[{"s":"20141001000016.768","e":"20141001000100.758"},{"s":"20141001000220.825","e":"20141001000242.774"},{"s":"20141001000256.811","e":"20141001000320.869"},{"s":"20141001000354.761","e":"20141001000422.812"},{"s":"20141001000526.821","e":"20141001000632.829"},{"s":"20141001000746.836","e":"20141001000834.757"},{"s":"20141001000904.749","e":"20141001000932.767"},{"s":"20141001000934.766","e":"20141001001002.777"}]
+```
+
+This returns a list of objects, where each object contains the start and end timestamp of a single video clip. When formatting the request, either the 'end_timestamp' or 'count' parameter is required.
+
+### HTTP Request
+
+`GET https://login.eagleeyenetworks.com/asset/list/video`
+
+Parameter           | Data Type     | Description   | Is Required
+---------           | -----------   | -----------   | -----------
+**id**              | string        | Camera Id     | true
+**start_timestamp** | string        | Start Timestamp in EEN format: YYYYMMDDHHMMSS.NNN | true
+end_timestamp       | string        | End Timestamp in EEN format: YYYYMMDDHHMMSS.NNN
+count               | int           | Used instead or with an 'end_timestamp' argument. If used with an 'end_timestamp' argument, the count is a limit on the number of entries to return, starting at the starting timestamp. If used without the e argument, returns N entries. Support negative value, which returns N entries before, sorted in reverse order - example -5 return 5 events previous to the specified time.
+options             | string, enum  | Additional modifier options. 'coalesce' = coalesces spans together. <br><br>enum: coalesce
+
 
 <!--===================================================================-->
 ## Create Timelapse Video
 
+TODO
+
 <!--===================================================================-->
 ## Retrieve Timelapse Video
+
+TODO
