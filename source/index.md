@@ -20,7 +20,15 @@ includes:
   - api_asset
   - api_poll
   - api_layout
-  - apis
+  - api_aaa
+  - api_account
+  - api_action
+  - api_annotation
+  - api_feedback
+  - api_metric
+  - api_pngspan
+  - api_recording
+  - api_search
   - errors
   - faq
   - sample_code
