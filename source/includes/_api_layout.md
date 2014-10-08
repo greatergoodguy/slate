@@ -238,6 +238,7 @@ curl --cookie "videobank_sessionid=[VIDEOBANK_SESSIONID]" --request GET https://
         "0b58ec7a-61e4-11e3-8f7d-523445989f37",
         "Everything",
         [
+]
             "mobile"
         ],
         "SWRD"
@@ -253,7 +254,6 @@ curl --cookie "videobank_sessionid=[VIDEOBANK_SESSIONID]" --request GET https://
     [...],
     [...],
     [...]
-]
 ```
 
 Returns array of arrays, with each sub-array representing a layout available to the user. Please note that the ListLayout model definition below has property keys, but that's only for reference purposes since it's actually just a standard array.
