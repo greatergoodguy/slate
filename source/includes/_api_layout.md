@@ -159,7 +159,7 @@ Returns layout object by Id
 
 Parameter     | Data Type   | Description
 ---------     | ----------- | -----------
-id            | string      | Layout Id
+**id**        | string      | Layout Id
 
 <!--===================================================================-->
 ## Create Layout
@@ -186,8 +186,8 @@ Creates a new layout
 
 Parameter     | Data Type     | Description | Is Required
 ---------     | -----------   | ----------- | -----------
-name          | string        | Layout Name | true
-types         | array[string] | Specifies target(s) for layout. Multiple values are allowed. | true
+**name**      | string        | Layout Name | true
+**types**     | array[string] | Specifies target(s) for layout. Multiple values are allowed. | true
 configuration | json          | JSON object that defines the layout configuration
 shares        | ???           | Array of arrays, one per account user for whom sharing is enabled for this layout. Each string contains two fields separated by a comma. The first field is a user id and the second field is the list of permissions for the user. Two special user IDs exist: 'account' specifies that the layout is shared with all users of the account. The second field contains permissions for users in the account. Example: ['cafedead', 'RWDS'] = user can view, change, delete or share this layout. ['cafe0001', 'RW'] = user can view and change this layout. ['account', 'R'] = All users in the account can view the layout. Permissions for the user issuing the /layout GET are not included in this array. |
 

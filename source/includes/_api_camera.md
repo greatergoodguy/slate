@@ -977,7 +977,7 @@ Returns camera object by id
 
 Parameter     | Data Type   | Description
 ---------     | ----------- | ----------- 
-id            | string      | Camera Id
+**id**        | string      | Camera Id
 
 <!--===================================================================-->
 ## Add Camera to Bridge
@@ -1002,12 +1002,12 @@ Adds an Unattached Camera to the Bridge
 
 `PUT https://login.eagleeyenetworks.com/g/device`
 
-Parameter | Data Type     | Description | Is Required
---------- | -----------   | ----------- | -----------
-name      | string        | Camera Name | true
-settings  | json          | Misc Settings | true
-timezone  | string        | If unspecified, this will default to the camera’s Bridge timezone | 
-tags      | array[string] | Array of strings, which each string representing a "tag" |
+Parameter     | Data Type     | Description | Is Required
+---------     | -----------   | ----------- | -----------
+**name**      | string        | Camera Name | true
+**settings**  | json          | Misc Settings | true
+timezone      | string        | If unspecified, this will default to the camera’s Bridge timezone | 
+tags          | array[string] | Array of strings, which each string representing a "tag" |
 
 <!--===================================================================-->
 ## Update Camera

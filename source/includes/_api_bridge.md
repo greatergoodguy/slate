@@ -130,7 +130,7 @@ Returns user object by id. Not passing an id will return the current authorized 
 
 Parameter     | Data Type   | Description
 ---------     | ----------- | -----------
-id            | string      | Bridge Id
+**id**        | string      | Bridge Id
 
 <!--===================================================================-->
 ## Add Bridge to EEVB
