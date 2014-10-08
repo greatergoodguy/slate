@@ -93,9 +93,9 @@ Returns user object by ID. Not passing an ID will return the current authorized 
 
 `GET https://login.eagleeyenetworks.com/g/user`
 
-Parameter | Data Type   | Is Required
---------- | ----------- | -----------
-id        | string      | false
+Parameter | Data Type   | Description | Is Required
+--------- | ----------- | ----------- | -----------
+id        | string      | User Id     | false
 
 <!--===================================================================-->
 ## Create User
@@ -266,19 +266,9 @@ curl --cookie "videobank_sessionid=[VIDEOBANK_SESSIONID]" --request GET https://
         ],
         "20140716205645.000"
     ],
-    [
-        "ca09a73b",
-        "Tom",
-        "Yu",
-        "tom.yu@fakeemail.com",
-        [
-            "export_video",
-            "recorded_video",
-            "live_video",
-            "active"
-        ],
-        "20140812213038.000"
-    ]
+    [...],
+    [...],
+    [...]
 ]
 ```
 
@@ -290,11 +280,11 @@ Returns array of arrays, with each sub-array representing a user available to th
 
 ### Response: User Model
 
-Array Index     | Attribute   | Data Type  
----------       | ----------- | -----------
-0               | id          | string
-1               | first_name  | string
-2               | last_name   | string
-3               | email       | string
-4               | permissions | array[string]
-5               | last_login  | string
+Array Index     | Attribute   | Data Type       | Description
+---------       | ----------- | -----------     | -----------
+0               | id          | string          | Unique identifier for the user
+1               | first_name  | string          | First Name of the user
+2               | last_name   | string          | Last Name of the user
+3               | email       | string          | Email address of the user
+4               | permissions | array[string]   | List of permissions the user has
+5               | last_login  | string          | Last time the user logged in, in EEN timestamp format: YYYYMMDDHHMMSS.NNN

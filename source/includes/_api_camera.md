@@ -1144,41 +1144,9 @@ curl --cookie "videobank_sessionid=[VIDEOBANK_SESSIONID]" --request GET https://
             null
         ]
     ],
-    [
-        "00004206",
-        "100f2fa1",
-        "Dome",
-        "camera",
-        [
-            [
-                "100d88a8",
-                "ATTD"
-            ]
-        ],
-        "ATTD",
-        "swr",
-        [],
-        "3b3efd60-432d-11e3-b19b-11ac28dbc101",
-        "4016825013440034",
-        1441847,
-        "US/Pacific",
-        -25200,
-        0,
-        "*10.143.217.117",
-        0,
-        "Greater Good",
-        false,
-        null,
-        null,
-        [
-            null,
-            null,
-            null,
-            null,
-            "",
-            null
-        ]
-    ]
+    [...],
+    [...],
+    [...]
 ]
 ```
 

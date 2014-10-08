@@ -158,7 +158,7 @@ Adds a bridge to the Eagle Eye Video Bank
 Parameter | Data Type     | Description 
 --------- | -----------   | ----------- 
 name      | string        | Camera Name 
-connectId | json          | Connect ID is needed to add and activate bridge to account. All non-alphanumeric characters will be stripped. 
+connectId | string        | Connect ID is needed to add and activate bridge to account. All non-alphanumeric characters will be stripped. 
 
 <!--===================================================================-->
 ## Update Bridge

@@ -17,8 +17,8 @@ includes:
   - api_camera
   - api_bridge
   - api_asset
-  - api_layout
   - api_poll
+  - api_layout
   - apis
   - errors
   - faq
