@@ -260,7 +260,7 @@ Returns array of arrays, with each sub-array representing a layout available to 
 
 ### HTTP Request
 
-`GET https://login.eagleeyenetworks.com/g/user/layout`
+`GET https://login.eagleeyenetworks.com/g/layout/list`
 
 ### Response: Layout Model
 
