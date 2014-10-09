@@ -20,7 +20,7 @@ Used to turn on recording for 1 camera, all cameras, or all cameras in a specifi
 
 ### HTTP Request
 
-`GET https://login.eagleeyenetworks.com/g/action/recordnow`
+`POST https://login.eagleeyenetworks.com/g/action/recordnow`
 
 Parameter       | Data Type   | Description  
 ---------       | ----------- | -----------  
@@ -41,7 +41,7 @@ Used to turn off recording for 1 camera, all cameras, or all cameras in a specif
 
 ### HTTP Request
 
-`GET https://login.eagleeyenetworks.com/g/action/recordoff`
+`POST https://login.eagleeyenetworks.com/g/action/recordoff`
 
 Parameter       | Data Type   | Description  
 ---------       | ----------- | -----------  
@@ -61,7 +61,7 @@ Used to turn on all cameras in the caller user’s account. Caller must be an ac
 
 ### HTTP Request
 
-`GET https://login.eagleeyenetworks.com/g/action/allon`
+`POST https://login.eagleeyenetworks.com/g/action/allon`
 
 <!--===================================================================-->
 ## Turn All Cameras Off
@@ -81,4 +81,4 @@ Used to turn off all cameras in the caller user’s account. Caller must be an a
 
 ### HTTP Request
 
-`GET https://login.eagleeyenetworks.com/g/action/alloff`
+`POST https://login.eagleeyenetworks.com/g/action/alloff`
