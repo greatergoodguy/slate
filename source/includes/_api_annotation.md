@@ -26,8 +26,8 @@ Create an annotation for a device at a particular timestamp, with data describin
 
 `PUT https://login.eagleeyenetworks.com/g/annotation`
 
-Parameter       | Data Type   	| Description  
----------       | ----------- 	| -----------  
+Parameter       | Data Type   	| Description
+---------       | ----------- 	| -----------
 **device_id**   | string      	| ID of the device the annotation should be associated with
 **timestamp**   | string      	| Timestamp associated with the annotation, in EEN format.
 **data**   		| json   		| JSON Object representing the data associated with the annotation. No predefined data fields required.
