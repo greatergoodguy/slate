@@ -40,9 +40,31 @@ Hit detection (for rollover) can be done in a browser by rendering opaque colors
 > Request
 
 ```shell
+curl -G https://login.eagleeyenetworks.com/pngspan/span.png -d "start_timestamp=[START_TIMESTAMP]&end_timestamp=[END_TIMESTAMP]&width=[WIDTH]&id=[CAMERA_ID]&foreground_color=[FOREGROUND_COLOR]&background_color=[BACKGROUND_COLOR]&table=[TABLE]&A=[VIDEOBANK_SESSIONID]"
 ```
 
-> Json Response
+PNG images can be retrieved for supporting metric visualization. PNG types include
 
-```json
-```
+  * span
+  * etag
+  * event
+  * setting
+  * purge
+
+### HTTP Request
+
+`GET https://login.eagleeyenetworks.com/pngspan/{png_type}.png`
+
+Parameter          		| Data Type     | Description   | Is Required
+---------          		| -----------   | -----------   | -----------
+**start_timestamp**		| string        | Start Timestamp in EEN format: [YYYYMMDDHHMMSS.NNN](#timestamp) | true
+**end_timestamp**  		| string        | End Timestamp in EEN format: [YYYYMMDDHHMMSS.NNN](#timestamp) | true
+**width**         		| int        	| Width in pixels of resulting PNG. Must be an integer greater than 0. | true
+**id**         			| string        | Camera Id | true
+**foreground_color**    | string        | Color of foreground (active). If both fg and bg have 0 for alpha, assumed fully opaque (0xff). 32bit ARGB color. | true
+**background_color**    | string        | Color of background (inactive). 32bit ARGB color. | true
+table    				| string, enum  | If provided, specifies name of table to be rendered. Required for type 'span' and 'event'. <br><br>enum: stream, onoff, video, register |
+etag    				| string        | Indentifies etag to be rendered, using the 4 character string identifier ('4CC'). Will utilize matching event tables where possible. Ignored for type 'span' and 'event'. |
+flval    				| string        | Identified value of the filter field from the starting etag. Only applicable for type 'span'. |
+flname					| string 		| Name of field within span start etag to match to flval. Interesting fields are roiid in roim table and videoid for video. Only applicable for type 'span'. |
+flflags    				| string        | Limits span rendering to spans with the flag asserted. ALERTS is asserted for roim and motion spans when an alert is active. |
