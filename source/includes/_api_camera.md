@@ -975,7 +975,7 @@ permissions                   | string            | String of one or more charac
 tags                          | array[string]     | Array of strings, which each string representing a "tag"
 bridges                       | [DeviceBridges](#devicebridges-attributes)     | Bridges this device is seen by
 settings                      | [DeviceSettings](#devicesettings-attributes)    | Misc settings
-camera_parameters             | object            | JSON object of camera parameters/settings (see More Info for details). If camera parameters cannot be retrieved for whatever reason (such as when communication with camera has been lost), then this will be empty, and camera_parameters_status_code will be 404.
+camera_parameters             | object            | JSON object of camera parameters/settings (see Overview for details). If camera parameters cannot be retrieved for whatever reason (such as when communication with camera has been lost), then this will be empty, and camera_parameters_status_code will be 404.
 camera_parameters_status_code | int               | 200 if camera_parameters were retrieved. 404 if camera_parameters were unable to be retrieved.
 camera_info                   | [DeviceCameraInfo](#devicecamerainfo-attributes)  | Camera related info, which only applies to devices that are cameras
 camera_info_status_code       | int               | 200 if camera_info was retrieved. 404 if camera_info was unable to be retrieved.

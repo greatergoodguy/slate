@@ -8,19 +8,19 @@ Layouts contain panes, which is a group of cameras arranged for viewing on scree
 The ordering of the panes is determined by the order of the array of LayoutJsonPane returned by the API. Each pane will have a size of 1, 2, or 3. A size of 1 is the smallest, and fills up 1x1 on the layout grid. A size of 3 is the largest and fills up 3x3 on the layout grid. If the grid does not have enough columns to fit the pane, then the size of the pane is decreased until it is able to fit on the grid.
 
 <!--===================================================================-->
-## Get Layout
+## Layout Model
 
-> Request
-
-```shell
-curl -G https://login.eagleeyenetworks.com/g/layout -d "A=[VIDEOBANK_SESSIONID]&id=[LAYOUT_ID]"
-```
-
-> Json Response
+> Layout Model
 
 ```json
 {
+    "id": "0b58ec7a-61e4-11e3-8f7d-523445989f37",
     "name": "Everything",
+    "types": [
+        "mobile"
+    ],
+    "permissions": "SWRD",
+    "current_recording_key": null,
     "shares": [
         [
             "ca01ce6d",
@@ -51,7 +51,6 @@ curl -G https://login.eagleeyenetworks.com/g/layout -d "A=[VIDEOBANK_SESSIONID]&
             "R"
         ]
     ],
-    "current_recording_key": null,
     "configuration": {
         "panes": [
             {
@@ -142,13 +141,55 @@ curl -G https://login.eagleeyenetworks.com/g/layout -d "A=[VIDEOBANK_SESSIONID]&
             "camera_aspect_ratio": 0.5625,
             "camera_border": false
         }
-    },
-    "id": "0b58ec7a-61e4-11e3-8f7d-523445989f37",
-    "types": [
-        "mobile"
-    ],
-    "permissions": "SWRD"
+    }
 }
+```
+
+### Layout Attributes
+
+Parameter               | Data Type             | Description
+---------               | -----------           | -----------
+id                      | string                | Unique identifier for the Layout
+name                    | string                | Name of the layout
+types                   | array[string]         | Specifies target(s) for layout. Multiple values are allowed.
+permissions             | string                | String of zero or more characters. Each character defines a permission. Permissions include: 'R' - user can view this layout. 'W' - user can modify this layout. 'D' - user can delete this layout. 'S' - user can share this layout
+current_recording_key   | string          | String key representing a recording currently being made with the cameras in the layout, which was initiated using the action/recordnow service.
+shares                  | array[array[string]]) | Array of arrays, one per account user for whom sharing is enabled for this layout. Each string contains two field separated by comma. The first field is a user aid and the second field are permissions for the user. Two special user ID exist: ‘account’ specifies that the layout is shared with all users of the account. Second field contains permissions for users in the account. Example: [‘cafedead’,’RWDS’] = user can view, change, delete or share this layout. [‘cafe0001’,’RW’] = user can view this layout and change this layout. [‘account’, ‘R’] = All users of the account can view this layout. Permissions for the user issuing the /layout GET are not included in this array.
+configuration           | LayoutConfiguration   | JSON object that defines the layout configuration
+
+### LayoutConfiguration Attributes
+
+Parameter               | Data Type                     | Description
+---------               | -----------                   | -----------
+panes                   | array[LayoutConfigurationPane]| Array of Panes
+settings                | LayoutConfigurationSettings   | Settings object
+
+### LayoutConfigurationPane Attributes
+
+Parameter               | Data Type                     | Description
+---------               | -----------                   | -----------
+name                    | string                        | Layout pane name
+type                    | string                        | ‘preview’ - shows live preview images form cameras. ‘carousel’- rotates between preview images, ids of cameras needs to be include in the cameras array along with an integer in the delay array. The delay is an integer value of milliseconds as too how long the Camera will be displayed before switching to the next Camera. A “carousel” with only one camera is the same as preview. ‘click’ - respond to click for other cameras in layout. ‘motion’ - respond to motion for other cameras in layout. ‘map’ - a static map with camera icons located on it. ‘url’ - displays the contents of the url in the pane as a frame.
+pane_id                 | int                           | ID given to pane when created from Layout Manager
+size                    | int                           | ['1' or '2' or '3']: Size to display image: 1 = small, 2 = medium, 3 = large
+cameras                 | array[string]                 | )Array of camera ids. For ‘carousel’, cycle through the camera ids with the delay setting in the corresponding ‘delay’ property
+
+### LayoutConfigurationSettings Attributes
+
+Parameter               | Data Type         | Description
+---------               | -----------       | -----------
+camera_border           | boolean           | Show camera pane borders
+camera_name             | boolean           | Show camera name
+camera_aspect_ratio     | float             | ['0.5625' or '0.75']: Aspect ratio of images. .5625 = 16x9, .75 = 4x3
+camera_row_limit        | int               | ['3' or '4' or '5']: Max number of cameras to show per row
+
+<!--===================================================================-->
+## Get Layout
+
+> Request
+
+```shell
+curl -G https://login.eagleeyenetworks.com/g/layout -d "A=[VIDEOBANK_SESSIONID]&id=[LAYOUT_ID]"
 ```
 
 Returns layout object by Id
