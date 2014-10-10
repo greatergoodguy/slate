@@ -148,43 +148,45 @@ ROME
 * eventid(guint32) - unique to this event
 
 <!--===================================================================-->
-## Get Camera
+## Camera Model
 
-> Request
-
-```shell
-curl -G https://login.eagleeyenetworks.com/g/device -d "A=[VIDEOBANK_SESSIONID]&id=[CAMERA_ID]"
-```
-
-> Json Response
+> Camera Model
 
 ```json
 {
+    "id": "1000f60d",
+    "name": "Kitchen",
+    "utcOffset": -18000,
+    "timezone": "US/Central",
+    "guid": "c6d11f36-9e63-11e1-a5b0-00408cdf9191",
+    "permissions": "swr",
+    "tags": [
+        "austin",
+        "kitchen"
+    ],
     "bridges": {
         "100a9af6": "ATTD"
     },
-    "camera_info_status_code": 200,
-    "name": "Kitchen",
     "settings": {
         "username": "onvif",
-        "bridge": "100a9af6",
-        "share_email": "mcazares+videotest@eagleeyenetworks.com",
-        "roi_names": {},
-        "floor": 16,
-        "alert_notifications": {},
-        "range": 17.983694,
-        "retention_days": 30,
-        "cloud_retention_days": 30,
-        "alert_modes": {},
-        "longitude": -97.740714999999994,
-        "azimuth": 257.47226999999998,
-        "latitude": 30.269064,
         "password": "securityCameraz",
+        "bridge": "100a9af6",
+        "roi_names": {},
+        "alert_notifications": {},
+        "alert_modes": {},
         "alert_levels": {},
         "notes": "",
-        "street_address": "717-799 Brazos Street, Austin, TX 78701, USA"
+        "longitude": -97.740714999999994,
+        "latitude": 30.269064,
+        "street_address": "717-799 Brazos Street, Austin, TX 78701, USA",
+        "azimuth": 257.47226999999998,
+        "range": 17.983694,
+        "floor": 16,
+        "share_email": "mcazares+videotest@eagleeyenetworks.com",
+        "retention_days": 30,
+        "cloud_retention_days": 30
     },
-    "camera_settings_status_code": 200,
+    "camera_info_status_code": 200,
     "camera_info": {
         "bridge": "bf5ce89d-8dbb-4eed-a2a8-60971e6d447e",
         "camera_state_version": 0,
@@ -217,11 +219,7 @@ curl -G https://login.eagleeyenetworks.com/g/device -d "A=[VIDEOBANK_SESSIONID]&
         "model": "AXIS M1054",
         "camtype": "ONVIF"
     },
-    "utcOffset": -18000,
     "camera_parameters_status_code": 200,
-    "id": "1000f60d",
-    "timezone": "US/Central",
-    "guid": "c6d11f36-9e63-11e1-a5b0-00408cdf9191",
     "camera_parameters": {
         "active_settings": {
             "bandwidth_background": {
@@ -960,13 +958,119 @@ curl -G https://login.eagleeyenetworks.com/g/device -d "A=[VIDEOBANK_SESSIONID]&
             },
             "schedules": {}
         }
-    },
-    "tags": [
-        "austin",
-        "kitchen"
-    ],
-    "permissions": "swr"
+    }
 }
+```
+
+### Device Attributes
+
+Parameter                     | Data Type         | Description
+---------                     | ---------------   | -----------
+id                            | string            | Unique identifier for the Device
+name                          | string            | Name of the device
+utcOffset                     | int               | Signed UTC offset in seconds of the timezone from UTC, where this device is installed.
+timezone                      | string            | Supported timezones: If this is a bridge, defaults to the Account timezone. If this is a camera, defaults to the camers’s Bridge timezone. Otherwise defaults to US/Pacific. <br><br>enum: US/Alaska, US/Arizona, US/Central, US/Pacific, US/Eastern, US/Mountain, US/Hawaii, UTC
+guid                          | string            | guid or other physical identifier of device
+permissions                   | string            | String of one or more characters. Each character defines a permission. Permissions include: 'R' - user has access to view images and video for this camera. 'A' - user is an admin for this camera. 'S' - user can share this camera in a group share. Note: All cameras in a group must have the ‘S’ permission or the group cannot be shared
+tags                          | array[string]     | Array of strings, which each string representing a "tag"
+bridges                       | [DeviceBridges](#devicebridges-attributes)     | Bridges this device is seen by
+settings                      | [DeviceSettings](#devicesettings-attributes)    | Misc settings
+camera_parameters             | object            | JSON object of camera parameters/settings (see More Info for details). If camera parameters cannot be retrieved for whatever reason (such as when communication with camera has been lost), then this will be empty, and camera_parameters_status_code will be 404.
+camera_parameters_status_code | int               | 200 if camera_parameters were retrieved. 404 if camera_parameters were unable to be retrieved.
+camera_info                   | [DeviceCameraInfo](#devicecamerainfo-attributes)  | Camera related info, which only applies to devices that are cameras
+camera_info_status_code       | int               | 200 if camera_info was retrieved. 404 if camera_info was unable to be retrieved.
+
+### DeviceSettings Attributes
+
+Parameter           | Data Type                         | Description
+---------           | ---------------                   | -----------
+username            | string                            | Username to login to camera. Only applies to Cameras.
+password            | string                            | Password to login to camera. Only applies to Cameras.
+bridge              | string                            | Device ID of bridge to attach camera to. Only applies to Cameras. Required for PUT for Cameras.
+guid                | string                            | GUID of physical device. Only applies to Cameras. Required for PUT for Cameras.
+roi_names           | [DeviceSettingsRoiNames](#devicesettingsroinames-attributes) | ROI names keyed by ROI ID. Only applies to Cameras.
+alert_notifications | [DeviceSettingsAlertNotifications](#devicesettingsalertnotifications-attributes) | Arrays of User IDs keyed by ROI ID. Only applies to Cameras.
+alert_modes         | [DeviceSettingsAlertModes](#devicesettingsalertmodes-attributes) | Arrays of Alert modes keyed by ROI ID. Only applies to Cameras.
+alert_levels        | [DeviceSettingsAlertLevels](#devicesettingsalertlevels-attributes) | Arrays of Alert levels keyed by ROI ID. Only applies to Cameras.
+notes               | string                            | Notes
+latitude            | float                             | Latitude of the cameras location.
+longitude           | float                             | Longitude of the cameras location.
+street_address      | string                            | Street Address of the cameras location.
+azimuth             | float                             | Direction that the center of the camera faces. Values from 0.0-360.0 North=0.0.
+range               | int                               | Effective distance the camera can 'see' in feet.
+floor               | int                               | The floor of the building given that it is multiple stories.
+share_email         | ???                               | 
+retention_days      | ???                               | 
+cloud_retention_days| ???                               | 
+
+### DeviceCameraInfo Attributes
+
+Parameter           | Data Type         | Description
+---------           | ---------------   | -----------
+bridge              | string            | GUID of bridge the camera is attached to
+camera_retention    | int               | Retention period in milliseconds
+camera_newest       | string            | Timestamp of newest event available, in EEN Timestamp format (YYYYMMDDHHMMSS.NNN)
+camera_oldest       | string            | Timestamp of oldest event available, in EEN Timestamp format (YYYYMMDDHHMMSS.NNN)
+camera_info_version | int               | Camera info version
+connect             | string            | Camera connect status
+camera_min_time     | string            | Minimum timestamp available, in EEN Timestamp format (YYYYMMDDHHMMSS.NNN)
+uuid                | string            | UUID string
+service             | string            | Service status
+make                | string            | Make of the device
+ipaddr              | string            | IP Addresses assigned to the device, comma delimited, with the one in use prefixed by an asterisk *
+ts                  | string            | Timestamp in EEN Timestamp format (YYYYMMDDHHMMSS.NNN)
+version             | string            | Firmware version
+status              | string            | Status bitmask
+mac                 | string            | MAC address
+proxy               | string            | Proxy
+bridgeid            | string            | Device of bridge this device is attached to
+now                 | string            | Current timestamp, in EEN Timestamp format (YYYYMMDDHHMMSS.NNN)
+class               | string            | Camera, or Bridge, etc.
+camera_now          | string            | Camera's current timestamp, in EEN Timestamp format (YYYYMMDDHHMMSS.NNN)
+camera_abs_newest   | string            | Timestamp of newest event available, in EEN Timestamp format (YYYYMMDDHHMMSS.NNN)
+camera_abs_oldest   | string            | Timestamp of oldest event available, in EEN Timestamp format (YYYYMMDDHHMMSS.NNN)
+model               | string            | Device model
+esn                 | string            | ESN id
+admin_user          | string            | Web Username
+admin_password      | string            | Web Password
+
+### DeviceSettingsRoiNames Attributes
+
+Parameter   | Data Type         | Description
+---------   | ---------------   | -----------
+roi_id      | string            | Object with keys being ROI IDs, and values being the name.
+
+### DeviceSettingsAlertNotifications Attributes
+
+Parameter   | Data Type         | Description
+---------   | ---------------   | -----------
+roi_id      | array[string]     | Object with keys being ROI IDs, and values being the array of User IDs
+
+### DeviceSettingsAlertModes Attributes
+
+Parameter   | Data Type         | Description
+---------   | ---------------   | -----------
+roi_id      | array[string]     | Object with keys being ROI IDs, and values being the array of alert modes
+
+### DeviceSettingsAlertLevels Attributes
+
+Parameter   | Data Type         | Description
+---------   | ---------------   | -----------
+roi_id      | array[string]     | Object with keys being ROI IDs, and values being the array of alert levels
+
+### DeviceBridges Attributes
+
+Parameter   | Data Type         | Description
+---------   | ---------------   | -----------
+device_id   | string            | Object with keys being Bridge Device IDs, and values being the service status of the camera on that bridge
+
+<!--===================================================================-->
+## Get Camera
+
+> Request
+
+```shell
+curl -G https://login.eagleeyenetworks.com/g/device -d "A=[VIDEOBANK_SESSIONID]&id=[CAMERA_ID]"
 ```
 
 Returns camera object by id
@@ -1156,7 +1260,7 @@ Returns array of arrays, with each sub-array representing a device available to 
 
 `GET https://login.eagleeyenetworks.com/g/device/list`
 
-Parameter | Data Type   | Description           
+Parameter | Data Type   | Description 
 --------- | ----------- | -----------           
 e         | string      | Camera Id             
 n         | string      | Camera Name           
@@ -1165,26 +1269,25 @@ s         | string      | Device Service Status
 
 ### Response: Camera Model
 
-Array Index | Attribute       | Data Type  
----------   | -----------     | -----------
-0           | account_id      | string
-1           | id              | string
-2           | name            | string
-3           | type            | string
-4           | bridges         | json
-5           | service_status  | string
-6           | permissions     | string
-7           | tags            | array[string]
-8           | guid            | string
-9           | serial_number   | string
-10          | device_status   | int
-11          | timezone        | string
-12          | timezone_utc_offset | int
-13          | is_unsupported  | int
-14          | ip_address      | string
-15          | is_shared       | int
-16          | owner_account_name | string
-17          | is_upnp         | boolean
-18          | video_input     | string
-19          | video_status    | string
-
+Array Index | Attribute           | Data Type             | Description 
+---------   | -----------         | -----------           | -----------           
+0           | account_id          | string                | Unique identifier for the Device's Account
+1           | id                  | string                | Unique identifier for the Device
+2           | name                | string                | Name of the device
+3           | type                | string, enum          | Type of device <br><br>enum: camera, bridge
+4           | bridges             | array[array[string]]  | This is an array of string arrays, each string array represents a bridge that can see the camera. The first element of the string array is the bridge ESN. The second element is the status.
+5           | service_status      | string, enum          | Device service status. ATTD = camera is attached to a bridge. IGND = camera is unattached from all bridges and is available to be attached to a bridge. <br><br>enum: ATTD, IGND
+6           | permissions         | string                | String of zero or more characters. Each character defines a permission that the current user has for the device. Permissions include: 'R' - user can view this device. 'W' - user can modify and delete this device. 'S' - user can share this device.
+7           | tags                | array[string]         | Tags
+8           | guid                | string                | GUID
+9           | serial_number       | string                | Serial number
+10          | device_status       | int                   | Device status bit mask
+11          | timezone            | string                | Timezone
+12          | timezone_utc_offset | int                   | Timezone UTC offset as signed integer in seconds, such as “-25200”, which translates to -7 hours from UTC.
+13          | is_unsupported      | int                   | Indicates the camera is NOT supported (1) or IS supported (0)
+14          | ip_address          | string                | IP Address of device
+15          | is_shared           | int                   | Indicates the camera is shared (1) or not (0)
+16          | owner_account_name  | string                | Name of the account that owns the device. This only applies to shared cameras, since they will be owned by a different account.
+17          | is_upnp             | boolean               | Indicates whether the camera is a UPNP device. Note that this property is different then all the other 'is_*' properties in the API, which normally are integers (0 or 1). Currently this property only applies to cameras that haven’t yet been attached to the account, in which they could have been detected via ONVIF or UPNP.
+18          | video_input         | string                | For analog cameras only, this indicates the video input channel of the camera.
+19          | video_status        | string                | For analog cameras only, this indicates the video status of the camera.
