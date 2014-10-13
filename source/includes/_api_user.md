@@ -222,6 +222,12 @@ is_notify_enable      | int     | 1 or 0. If 1, user will receive alert notifica
 notify_rule           | array   | Contains alert notification rules Each rule contains three fields separated by dashes And takes the form: Alert_Label-Notification_Method-Delay. Alert_Label: a name defined by the user. Notification_Method: Valid values: email, sms, gui. Delay: the amount of time, in minutes between between notifications. |
 -->
 
+### Response Json Attributes
+
+Parameter       | Data Type   | Description
+---------       | ----------- | -----------
+id              | string      | Unique identifier for the user
+
 <!--===================================================================-->
 ## Update User
 
@@ -248,33 +254,39 @@ Updates a user
 Parameter               | Data Type     | Description   | Is Required
 ---------               | -----------   | -----------   | -----------
 **id**                  | string        | User Id       | true
-first_name              | string        | First Name    |
-last_name               | string        | Last Name     |
-email                   | string        | Email Address |
-phone                   | string        | Phone Number |
-mobile_phone            | string        | Mobile Phone Number |
-uid                     | string        | An identifier of the user. Only Super Users can set this. |
-owner_account_id        | string        | ID of owner account. Defaults to account of the user creating it. Must be an account the user has access to. For SuperUsers, it can be any account, for Account SuperUsers, it can be theirs or a child account. |
-street                  | string        | Street Address |
-city                    | string        | City |
-state                   | string        | State |
-country                 | string        | Country |
-postal_code             | string        | Postal Code |
-json                    | [UserJson](#userjson-attributes) | JSON formatted data representing various user settings. |
-is_staff                | int           | 1 or 0 indicating the user has Staff permission. Only Super Users can set this. | 
-is_superuser            | int           | 1 or 0 indicating the user has Super User permission. Only Super Users can set this. |
-is_account_superuser    | int           | 1 or 0 indicating the user as Account Super User permission. Only Super Users and Account Super Users can set this. |
-is_layout_admin         | int           | 1 or 0 indicating whether the user is a layout admin or not. |
-is_device_admin         | int           | 1 or 0 indicating whether the user is a device admin or not. |
-camera_access           | array         | Array of arrays, one per device for which the uer has permissions. Each sub array contains two elements. The first field is a device id, and the second field is a string of 1 or more chacterse indicating permissions for the user, for example: [‘cafedead’,’RWS’] = user can view, change, delete this device. [‘cafe0001’,’RW’] = user can view this layout and change this device. Permissions include: 'R' - user has access to view images and video for this camera. 'A' - user is an admin for this camera. 'S' - user can share this camera in a group share. Only superusers or account_superusers can edit this field. |
-sms_phone               | string        | Phone number to be used for SMS messaging. |
-is_sms_include_picture  | int           | 1 or 0. If 1, use MMS messaging to include a picture w with alert messages sent to the sms_phone number. |
-alternate_email         | string        | Email address to be used for alert notifications. |
-timezone                | string        | User timezone. Defaults to US/Pacific. |
-access_period           | array         | Contains the time periods during which the user has access to the account. Each element of the array contains three field separated by dashes. The first field is the day of the week where Monday is 0. The second element is the start time. The third element is the end time. If empty, user has no time restrictions for access to the account. All times are expressed in local time and use a 24 hour clock formatted as HHMM. |
-notify_period           | array         | Contains the time periods during which the user will receive alert notifications.. Each element of the array contains three field separated by dashes. The first field is the day of the week where Monday is 0. The second element is the start time. The third element is the end time. If empty, user will not receive any alert notifications. All times are expressed in local time and use a 24 hour clock formatted as HHMM. |
-is_notify_enable        | int           | 1 or 0. If 1, user will receive alert notifications as specified in notify_period. |
-notify_rule             | array         | Contains alert notification rules Each rule contains three fields separated by dashes And takes the form: Alert_Label-Notification_Method-Delay. Alert_Label: a name defined by the user. Notification_Method: Valid values: email, sms, gui. Delay: the amount of time, in minutes between between notifications. |
+first_name              | string        | First Name
+last_name               | string        | Last Name
+email                   | string        | Email Address
+phone                   | string        | Phone Number
+mobile_phone            | string        | Mobile Phone Number
+uid                     | string        | An identifier of the user. Only Super Users can set this.
+owner_account_id        | string        | ID of owner account. Defaults to account of the user creating it. Must be an account the user has access to. For SuperUsers, it can be any account, for Account SuperUsers, it can be theirs or a child account.
+street                  | string        | Street Address
+city                    | string        | City
+state                   | string        | State
+country                 | string        | Country
+postal_code             | string        | Postal Code
+json                    | [UserJson](#userjson-attributes) | JSON formatted data representing various user settings.
+is_staff                | int           | 1 or 0 indicating the user has Staff permission. Only Super Users can set this.
+is_superuser            | int           | 1 or 0 indicating the user has Super User permission. Only Super Users can set this.
+is_account_superuser    | int           | 1 or 0 indicating the user as Account Super User permission. Only Super Users and Account Super Users can set this.
+is_layout_admin         | int           | 1 or 0 indicating whether the user is a layout admin or not.
+is_device_admin         | int           | 1 or 0 indicating whether the user is a device admin or not.
+camera_access           | array         | Array of arrays, one per device for which the uer has permissions. Each sub array contains two elements. The first field is a device id, and the second field is a string of 1 or more chacterse indicating permissions for the user, for example: [‘cafedead’,’RWS’] = user can view, change, delete this device. [‘cafe0001’,’RW’] = user can view this layout and change this device. Permissions include: 'R' - user has access to view images and video for this camera. 'A' - user is an admin for this camera. 'S' - user can share this camera in a group share. Only superusers or account_superusers can edit this field.
+sms_phone               | string        | Phone number to be used for SMS messaging.
+is_sms_include_picture  | int           | 1 or 0. If 1, use MMS messaging to include a picture w with alert messages sent to the sms_phone number.
+alternate_email         | string        | Email address to be used for alert notifications.
+timezone                | string        | User timezone. Defaults to US/Pacific.
+access_period           | array         | Contains the time periods during which the user has access to the account. Each element of the array contains three field separated by dashes. The first field is the day of the week where Monday is 0. The second element is the start time. The third element is the end time. If empty, user has no time restrictions for access to the account. All times are expressed in local time and use a 24 hour clock formatted as HHMM.
+notify_period           | array         | Contains the time periods during which the user will receive alert notifications.. Each element of the array contains three field separated by dashes. The first field is the day of the week where Monday is 0. The second element is the start time. The third element is the end time. If empty, user will not receive any alert notifications. All times are expressed in local time and use a 24 hour clock formatted as HHMM.
+is_notify_enable        | int           | 1 or 0. If 1, user will receive alert notifications as specified in notify_period.
+notify_rule             | array         | Contains alert notification rules Each rule contains three fields separated by dashes And takes the form: Alert_Label-Notification_Method-Delay. Alert_Label: a name defined by the user. Notification_Method: Valid values: email, sms, gui. Delay: the amount of time, in minutes between between notifications.
+
+### Response Json Attributes
+
+Parameter       | Data Type   | Description
+---------       | ----------- | -----------
+id              | string      | Unique identifier for the user
 
 <!--===================================================================-->
 ## Delete User

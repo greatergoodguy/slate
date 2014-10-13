@@ -999,9 +999,9 @@ street_address      | string                            | Street Address of the 
 azimuth             | float                             | Direction that the center of the camera faces. Values from 0.0-360.0 North=0.0.
 range               | int                               | Effective distance the camera can 'see' in feet.
 floor               | int                               | The floor of the building given that it is multiple stories.
-share_email         | ???                               | 
-retention_days      | ???                               | 
-cloud_retention_days| ???                               | 
+share_email         | ???
+retention_days      | ???
+cloud_retention_days| ???
 
 ### DeviceCameraInfo Attributes
 
@@ -1110,8 +1110,14 @@ Parameter     | Data Type     | Description | Is Required
 ---------     | -----------   | ----------- | -----------
 **name**      | string        | Camera Name | true
 **settings**  | json          | Misc Settings | true
-timezone      | string        | If unspecified, this will default to the camera’s Bridge timezone | 
-tags          | array[string] | Array of strings, which each string representing a "tag" |
+timezone      | string        | If unspecified, this will default to the camera’s Bridge timezone
+tags          | array[string] | Array of strings, which each string representing a "tag"
+
+### Response Json Attributes
+
+Parameter       | Data Type   | Description
+---------       | ----------- | -----------
+id              | string      | Unique identifier for the device
 
 <!--===================================================================-->
 ## Update Camera
@@ -1137,12 +1143,18 @@ curl --cookie "videobank_sessionid=[VIDEOBANK_SESSIONID]" -X POST -v -H "content
 Parameter                 | Data Type     | Description   | Is Required
 ---------                 | -----------   | -----------   | -----------
 **id**                    | string        | Camera Id     | true
-name                      | string        | Camera Name   |
-timezone                  | strings       | If unspecified, this will default to the camera’s Bridge timezone | 
-tags                      | array[string] | Array of strings, which each string representing a "tag" |
-settings                  | json          | Misc Settings |
-camera_parameters_add     | json          | JSON object of camera parameters/settings to add/update |
-camera_parameters_delete  | json          | JSON object of camera parameters/settings to delete |
+name                      | string        | Camera Name
+timezone                  | strings       | If unspecified, this will default to the camera’s Bridge timezone
+tags                      | array[string] | Array of strings, which each string representing a "tag"
+settings                  | json          | Misc Settings
+camera_parameters_add     | json          | JSON object of camera parameters/settings to add/update
+camera_parameters_delete  | json          | JSON object of camera parameters/settings to delete
+
+### Response Json Attributes
+
+Parameter       | Data Type   | Description
+---------       | ----------- | -----------
+id              | string      | Unique identifier for the device
 
 <!--===================================================================-->
 ## Delete Camera

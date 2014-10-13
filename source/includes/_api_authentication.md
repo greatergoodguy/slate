@@ -39,6 +39,18 @@ Parameter   	| Data Type
 **username** 	| string      
 **password** 	| string     
 
+### Error Status Codes
+
+HTTP Status Code    | Data Type   
+---------           | ----------- 
+400 | Some argument(s) are missing or invalid
+401 | Supplied credentials are not valid
+402 | Account is suspended
+460 | Account is inactive
+461 | Account is pending
+412 | User is disabled
+462 | User is pending. This will be thrown before 401 if username is valid and Account is active.
+200 | User has been authenticated. Body contains JSON encoded result
 
 ## Step 2: Authorize
 
@@ -128,3 +140,11 @@ curl -D - --request POST https://login.eagleeyenetworks.com/g/aaa/authorize --da
 Parameter   | Data Type		
 ---------	| -----------   
 **token**   | string      	
+
+### Error Status Codes
+
+HTTP Status Code    | Data Type   
+---------           | ----------- 
+400 | Some argument(s) are missing or invalid
+401 | Invalid Token supplied
+200 | User has been authorized for access to the realm

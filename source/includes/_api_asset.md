@@ -100,7 +100,7 @@ Parameter         | Data Type     | Description   | Is Required
 **id**            | string        | Camera Id     | true
 **timestamp**     | string        | Timestamp in EEN format: YYYYMMDDHHMMSS.NNN | true
 **asset_class**   | string, enum  | Asset class of the image <br><br>enum: all, pre, thumb | true
-quality           | string, enum  | Quality of image <br><br>enum: low, med, high |
+quality           | string, enum  | Quality of image <br><br>enum: low, med, high
 
 <!--===================================================================-->
 ## Get Video
@@ -127,7 +127,7 @@ Parameter                 | Data Type     | Description   | Is Required
 **id**                    | string        | Camera Id     | true
 **start_timestamp**       | string        | Start Timestamp in EEN format: YYYYMMDDHHMMSS.NNN | true
 **end_timestamp**         | string        | End Timestamp in EEN format: YYYYMMDDHHMMSS.NNN | true
-quality                   | string, enum  | Indicates requested resolution if multiple are available. <br><br>enum: low, mid, high |
+quality                   | string, enum  | Indicates requested resolution if multiple are available. <br><br>enum: low, mid, high
 playback_start_timestamp  | string        | EE timestamp where playback will begin. This value should be between the start_timestamp and end_timestamp.
 time_offset               | string        | Start the video stream N ms into the specified timespan. Allows playing of a smaller segment.
 <!--===================================================================-->
@@ -192,9 +192,42 @@ options             | string, enum  | Additional modifier options. 'coalesce' = 
 <!--===================================================================-->
 ## Create Timelapse Video
 
-TODO
+This api is used to request the creation of a new time lapse video for a particular camera and time range. An ID will be returned that you can then use (see GET below) to find out the progress and the download URL of the video, which will be in .mp4 format.
+
+### HTTP Request
+
+`PUT https://login.eagleeyenetworks.com/asset/time_lapse`
+
+Parameter           | Data Type     | Description   | Is Required
+---------           | -----------   | -----------   | -----------
+**device_id**       | string        | Id of the device the time lapse video should be created for | true
+**start_timestamp** | string        | Start timestamp of the time range to be used for the time lapse video, in EEN format. | true
+**end_timestamp**   | string        | End timestamp of the time range to be used for the time lapse video, in EEN format. | true
+step                | int           | Specifies how many milliseconds between each data point used to create the time lapse. Optional. Defaults to 1000 (1 second).
+
+### Response Json Attributes
+
+Parameter       | Data Type   | Description
+---------       | ----------- | -----------
+id              | string      | UUID of the time lapse request
 
 <!--===================================================================-->
 ## Retrieve Timelapse Video
 
-TODO
+Using the ID returned when requesting the time lapse (see PUT above), this api returns information about the time lapse request. It allows you to find out the progress and how to download the resulting video, which will be in .mp4 format.
+
+### HTTP Request
+
+`GET https://login.eagleeyenetworks.com/asset/time_lapse`
+
+Parameter           | Data Type     | Description   | Is Required
+---------           | -----------   | -----------   | -----------
+**id**              | string        | Id of the time lapse, which was returned when it was created/requested | true
+**device_id**       | string        | Id of the device associated with the time lapse when it was created/requested | true
+
+### Response Json Attributes
+
+Parameter           | Data Type     | Description 
+---------           | -----------   | ----------- 
+percent_complete    | float         | Id of the time lapse, which was returned when it was created/requested
+**device_id**       | string        | Id of the device associated with the time lapse when it was created/requested | true

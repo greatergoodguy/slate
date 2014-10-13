@@ -160,6 +160,12 @@ Parameter | Data Type     | Description
 name      | string        | Camera Name 
 connectId | string        | Connect ID is needed to add and activate bridge to account. All non-alphanumeric characters will be stripped. 
 
+### Response Json Attributes
+
+Parameter       | Data Type   | Description
+---------       | ----------- | -----------
+id              | string      | Unique identifier for the device
+
 <!--===================================================================-->
 ## Update Bridge
 
@@ -184,12 +190,18 @@ curl --cookie "videobank_sessionid=[VIDEOBANK_SESSIONID]" -X POST -v -H "content
 Parameter                 | Data Type     | Description   | Is Required
 ---------                 | -----------   | -----------   | -----------
 **id**                    | string        | Bridge Id     | true
-name                      | string        | Bridge Name   |
-timezone                  | strings       | If unspecified, this will default to the camera’s Bridge timezone | 
-tags                      | array[string] | Array of strings, which each string representing a "tag" |
-settings                  | json          | Misc Settings |
-camera_parameters_add     | json          | JSON object of camera parameters/settings to add/update |
-camera_parameters_delete  | json          | JSON object of camera parameters/settings to delete |
+name                      | string        | Bridge Name
+timezone                  | strings       | If unspecified, this will default to the camera’s Bridge timezone
+tags                      | array[string] | Array of strings, which each string representing a "tag"
+settings                  | json          | Misc Settings
+camera_parameters_add     | json          | JSON object of camera parameters/settings to add/update
+camera_parameters_delete  | json          | JSON object of camera parameters/settings to delete
+
+### Response Json Attributes
+
+Parameter       | Data Type   | Description
+---------       | ----------- | -----------
+id              | string      | Unique identifier for the device
 
 <!--===================================================================-->
 ## Delete Bridge
