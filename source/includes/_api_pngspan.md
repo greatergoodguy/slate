@@ -63,8 +63,16 @@ Parameter          		| Data Type     | Description   | Is Required
 **id**         			| string        | Camera Id | true
 **foreground_color**    | string        | Color of foreground (active). If both fg and bg have 0 for alpha, assumed fully opaque (0xff). 32bit ARGB color. | true
 **background_color**    | string        | Color of background (inactive). 32bit ARGB color. | true
-table    				| string, enum  | If provided, specifies name of table to be rendered. Required for type 'span' and 'event'. <br><br>enum: stream, onoff, video, register |
-etag    				| string        | Indentifies etag to be rendered, using the 4 character string identifier ('4CC'). Will utilize matching event tables where possible. Ignored for type 'span' and 'event'. |
-flval    				| string        | Identified value of the filter field from the starting etag. Only applicable for type 'span'. |
-flname					| string 		| Name of field within span start etag to match to flval. Interesting fields are roiid in roim table and videoid for video. Only applicable for type 'span'. |
-flflags    				| string        | Limits span rendering to spans with the flag asserted. ALERTS is asserted for roim and motion spans when an alert is active. |
+table    				| string, enum  | If provided, specifies name of table to be rendered. Required for type 'span' and 'event'. <br><br>enum: stream, onoff, video, register
+etag    				| string        | Indentifies etag to be rendered, using the 4 character string identifier ('4CC'). Will utilize matching event tables where possible. Ignored for type 'span' and 'event'.
+flval    				| string        | Identified value of the filter field from the starting etag. Only applicable for type 'span'.
+flname					| string 		| Name of field within span start etag to match to flval. Interesting fields are roiid in roim table and videoid for video. Only applicable for type 'span'.
+flflags    				| string        | Limits span rendering to spans with the flag asserted. ALERTS is asserted for roim and motion spans when an alert is active.
+
+HTTP Status Code    | Data Type   
+------------------- | ----------- 
+200 | Request succeeded
+401 | Unauthorized due to invalid session
+404 | Not found if camera, etag or table cannot be found
+408 | Required arguments are missing or invalid
+500 | Problem occurred during data processing or rendering

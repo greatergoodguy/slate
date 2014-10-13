@@ -202,6 +202,15 @@ Parameter     | Data Type   | Description
 ---------     | ----------- | -----------
 **id**        | string      | Layout Id
 
+### Error Status Codes
+
+HTTP Status Code    | Data Type   
+------------------- | ----------- 
+200 | Request succeeded
+400 | Unexpected or non-identifiable arguments are supplied
+401 | Unauthorized due to invalid session cookie
+403 | Forbidden due to the user missing the necessary privileges
+
 <!--===================================================================-->
 ## Create Layout
 
@@ -230,7 +239,16 @@ Parameter     | Data Type     | Description | Is Required
 **name**      | string        | Layout Name | true
 **types**     | array[string] | Specifies target(s) for layout. Multiple values are allowed. | true
 configuration | json          | JSON object that defines the layout configuration
-shares        | ???           | Array of arrays, one per account user for whom sharing is enabled for this layout. Each string contains two fields separated by a comma. The first field is a user id and the second field is the list of permissions for the user. Two special user IDs exist: 'account' specifies that the layout is shared with all users of the account. The second field contains permissions for users in the account. Example: ['cafedead', 'RWDS'] = user can view, change, delete or share this layout. ['cafe0001', 'RW'] = user can view and change this layout. ['account', 'R'] = All users in the account can view the layout. Permissions for the user issuing the /layout GET are not included in this array. |
+shares        | ???           | Array of arrays, one per account user for whom sharing is enabled for this layout. Each string contains two fields separated by a comma. The first field is a user id and the second field is the list of permissions for the user. Two special user IDs exist: 'account' specifies that the layout is shared with all users of the account. The second field contains permissions for users in the account. Example: ['cafedead', 'RWDS'] = user can view, change, delete or share this layout. ['cafe0001', 'RW'] = user can view and change this layout. ['account', 'R'] = All users in the account can view the layout. Permissions for the user issuing the /layout GET are not included in this array.
+
+### Error Status Codes
+
+HTTP Status Code    | Data Type   
+------------------- | ----------- 
+200 | Request succeeded
+400 | Unexpected or non-identifiable arguments are supplied
+401 | Unauthorized due to invalid session cookie
+403 | Forbidden due to the user missing the necessary privileges
 
 <!--===================================================================-->
 ## Update Layout
@@ -244,6 +262,15 @@ shares        | ???           | Array of arrays, one per account user for whom s
 
 ```json
 ```
+
+### Error Status Codes
+
+HTTP Status Code    | Data Type   
+------------------- | ----------- 
+200 | Request succeeded
+400 | Unexpected or non-identifiable arguments are supplied
+401 | Unauthorized due to invalid session cookie
+403 | Forbidden due to the user missing the necessary privileges
 
 <!--===================================================================-->
 ## Delete Layout
@@ -261,6 +288,16 @@ curl --cookie "videobank_sessionid=[VIDEOBANK_SESSIONID]" -X DELETE -v -H "conte
 Parameter     | Data Type   | Description
 ---------     | ----------- | -----------
 **id**        | string      | Layout Id
+
+### Error Status Codes
+
+HTTP Status Code    | Data Type   
+------------------- | ----------- 
+200 | Request succeeded
+400 | Unexpected or non-identifiable arguments are supplied
+401 | Unauthorized due to invalid session cookie
+403 | Forbidden due to the user missing the necessary privileges
+404 | Layout matching the ID was not found
 
 <!--===================================================================-->
 ## Get List of Layouts
@@ -312,3 +349,12 @@ Array Index     | Attribute   | Data Type       | Description
 1               | name        | string          | Name of the layout
 2               | types       | array[string]   | Array of types defined for the layout. This attribute has not yet been implemented.
 3               | permissions | string          | String of zero or more characters. Each character defines a permission that the current user has for the layout. Permissions include: 'R' - user can view this layout. 'W' - user can modify this layout. 'D' - user can delete this layout. 'S' - user can share this layout.
+
+### Error Status Codes
+
+HTTP Status Code    | Data Type   
+------------------- | ----------- 
+200 | Request succeeded
+400 | Unexpected or non-identifiable arguments are supplied
+401 | Unauthorized due to invalid session cookie
+403 | Forbidden due to the user missing the necessary privileges

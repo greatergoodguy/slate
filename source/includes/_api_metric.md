@@ -120,9 +120,19 @@ Parameter       | Data Type   	| Description  	| Is Required
 ---------       | ----------- 	| -----------  	| ----------- 
 **id**   		| string      	| Bridge Id 	| true
 start_timestamp | string      	| Start timestamp of query, in EEN format: YYYYMMDDHHMMSS.NNN. Defaults to 7 days ago.
-end_timestamp  	| string   		| End timestamp of query, in EEN format: YYYYMMDDHHMMSS.NNN. Defaults to now. |
-group_by 		| string, enum  | Hour or Day, indicating how the results should be grouped. <br><br>enum: day, hour, minute | 
-motion_interval | int      		| Motion Interval used for Motion Activity metric, in milliseconds. Defaults to 15000. |
+end_timestamp  	| string   		| End timestamp of query, in EEN format: YYYYMMDDHHMMSS.NNN. Defaults to now.
+group_by 		| string, enum  | Hour or Day, indicating how the results should be grouped. <br><br>enum: day, hour, minute
+motion_interval | int      		| Motion Interval used for Motion Activity metric, in milliseconds. Defaults to 15000.
+
+### Error Status Codes
+
+HTTP Status Code    | Data Type   
+------------------- | ----------- 
+200 | Request succeeded
+400 | Unexpected or non-identifiable arguments are supplied
+401 | Unauthorized due to invalid session cookie
+403 | Forbidden due to the user missing the necessary privileges
+404 | Metrics not found
 
 <!--===================================================================-->
 ## Bridge Bandwidth
@@ -258,5 +268,13 @@ Parameter       | Data Type   	| Description  	| Is Required
 ---------       | ----------- 	| -----------  	| ----------- 
 **id**   		| string      	| Bridge Id 	| true
 start_timestamp | string      	| Start timestamp of query, in EEN format: YYYYMMDDHHMMSS.NNN. Defaults to 7 days ago.
-end_timestamp  	| string   		| End timestamp of query, in EEN format: YYYYMMDDHHMMSS.NNN. Defaults to now. |
-group_by 		| string, enum  | Hour or Day, indicating how the results should be grouped. <br><br>enum: day, hour, minute | 
+end_timestamp  	| string   		| End timestamp of query, in EEN format: YYYYMMDDHHMMSS.NNN. Defaults to now.
+group_by 		| string, enum  | Hour or Day, indicating how the results should be grouped. <br><br>enum: day, hour, minute
+
+HTTP Status Code    | Data Type   
+------------------- | ----------- 
+200 | Request succeeded
+400 | Unexpected or non-identifiable arguments are supplied
+401 | Unauthorized due to invalid session cookie
+403 | Forbidden due to the user missing the necessary privileges
+404 | Metrics not found
