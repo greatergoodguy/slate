@@ -132,6 +132,15 @@ Parameter     | Data Type   | Description
 ---------     | ----------- | -----------
 **id**        | string      | Bridge Id
 
+### Error Status Codes
+
+HTTP Status Code    | Data Type   
+------------------- | ----------- 
+200 | Request succeeded
+400 | Unexpected or non-identifiable arguments are supplied
+401 | Unauthorized due to invalid session cookie
+403 | Forbidden due to the user missing the necessary privileges
+
 <!--===================================================================-->
 ## Add Bridge to EEVB
 
@@ -165,6 +174,19 @@ connectId | string        | Connect ID is needed to add and activate bridge to a
 Parameter       | Data Type   | Description
 ---------       | ----------- | -----------
 id              | string      | Unique identifier for the device
+
+### Error Status Codes
+
+HTTP Status Code    | Data Type   
+------------------- | ----------- 
+200 | Request succeeded
+400 | Unexpected or non-identifiable arguments are supplied
+401 | Unauthorized due to invalid session cookie
+403 | Forbidden due to the user missing the necessary privileges
+404 | No device matching the ConnectID or GUID was found
+409 | ConnectID or GUID is currently already in use by an account
+410 | Communication cannot be made to attach the camera to the bridge
+415 | Device associated with the given GUID is unsupported
 
 <!--===================================================================-->
 ## Update Bridge
@@ -203,6 +225,17 @@ Parameter       | Data Type   | Description
 ---------       | ----------- | -----------
 id              | string      | Unique identifier for the device
 
+### Error Status Codes
+
+HTTP Status Code    | Data Type   
+------------------- | ----------- 
+200 | Request succeeded
+400 | Unexpected or non-identifiable arguments are supplied
+401 | Unauthorized due to invalid session cookie
+403 | Forbidden due to the user missing the necessary privileges
+404 | Device matching the ID was not found
+463 | Unable to communicate with the camera to add/delete camera settings, contact support
+
 <!--===================================================================-->
 ## Delete Bridge
 
@@ -219,6 +252,17 @@ curl --cookie "videobank_sessionid=[VIDEOBANK_SESSIONID]" -X DELETE -v -H "conte
 Parameter     | Data Type   | Description
 ---------     | ----------- | -----------
 **id**        | string      | Bridge Id
+
+### Error Status Codes
+
+HTTP Status Code    | Data Type   
+------------------- | ----------- 
+200 | Request succeeded
+400 | Unexpected or non-identifiable arguments are supplied
+401 | Unauthorized due to invalid session cookie
+403 | Forbidden due to the user missing the necessary privileges
+404 | Device matching the ID was not found
+463 | Unable to communicate with the camera or bridge, contact support
 
 <!--===================================================================-->
 ## Get List of Bridges
@@ -383,3 +427,11 @@ Array Index | Attribute       | Data Type
 18          | video_input     | string
 19          | video_status    | string
 
+### Error Status Codes
+
+HTTP Status Code    | Data Type   
+------------------- | ----------- 
+200 | Request succeeded
+400 | Unexpected or non-identifiable arguments are supplied
+401 | Unauthorized due to invalid session cookie
+403 | Forbidden due to the user missing the necessary privileges

@@ -1083,6 +1083,15 @@ Parameter     | Data Type   | Description
 ---------     | ----------- | ----------- 
 **id**        | string      | Camera Id
 
+### Error Status Codes
+
+HTTP Status Code    | Data Type   
+------------------- | ----------- 
+200 | Request succeeded
+400 | Unexpected or non-identifiable arguments are supplied
+401 | Unauthorized due to invalid session cookie
+403 | Forbidden due to the user missing the necessary privileges
+
 <!--===================================================================-->
 ## Add Camera to Bridge
 
@@ -1118,6 +1127,17 @@ tags          | array[string] | Array of strings, which each string representing
 Parameter       | Data Type   | Description
 ---------       | ----------- | -----------
 id              | string      | Unique identifier for the device
+
+HTTP Status Code    | Data Type   
+------------------- | ----------- 
+200 | Request succeeded
+400 | Unexpected or non-identifiable arguments are supplied
+401 | Unauthorized due to invalid session cookie
+403 | Forbidden due to the user missing the necessary privileges
+404 | No device matching the ConnectID or GUID was found
+409 | ConnectID or GUID is currently already in use by an account
+410 | Communication cannot be made to attach the camera to the bridge
+415 | Device associated with the given GUID is unsupported
 
 <!--===================================================================-->
 ## Update Camera
@@ -1156,6 +1176,17 @@ Parameter       | Data Type   | Description
 ---------       | ----------- | -----------
 id              | string      | Unique identifier for the device
 
+### Error Status Codes
+
+HTTP Status Code    | Data Type   
+------------------- | ----------- 
+200 | Request succeeded
+400 | Unexpected or non-identifiable arguments are supplied
+401 | Unauthorized due to invalid session cookie
+403 | Forbidden due to the user missing the necessary privileges
+404 | Device matching the ID was not found
+463 | Unable to communicate with the camera to add/delete camera settings, contact support
+
 <!--===================================================================-->
 ## Delete Camera
 
@@ -1172,6 +1203,17 @@ curl --cookie "videobank_sessionid=[VIDEOBANK_SESSIONID]" -X DELETE -v -H "conte
 Parameter     | Data Type   | Description
 ---------     | ----------- | -----------
 **id**        | string      | Camera Id
+
+### Error Status Codes
+
+HTTP Status Code    | Data Type   
+------------------- | ----------- 
+200 | Request succeeded
+400 | Unexpected or non-identifiable arguments are supplied
+401 | Unauthorized due to invalid session cookie
+403 | Forbidden due to the user missing the necessary privileges
+404 | Device matching the ID was not found
+463 | Unable to communicate with the camera or bridge, contact support
 
 <!--===================================================================-->
 ## Get List of Cameras
@@ -1303,3 +1345,12 @@ Array Index | Attribute           | Data Type             | Description
 17          | is_upnp             | boolean               | Indicates whether the camera is a UPNP device. Note that this property is different then all the other 'is_*' properties in the API, which normally are integers (0 or 1). Currently this property only applies to cameras that haven’t yet been attached to the account, in which they could have been detected via ONVIF or UPNP.
 18          | video_input         | string                | For analog cameras only, this indicates the video input channel of the camera.
 19          | video_status        | string                | For analog cameras only, this indicates the video status of the camera.
+
+### Error Status Codes
+
+HTTP Status Code    | Data Type   
+------------------- | ----------- 
+200 | Request succeeded
+400 | Unexpected or non-identifiable arguments are supplied
+401 | Unauthorized due to invalid session cookie
+403 | Forbidden due to the user missing the necessary privileges
