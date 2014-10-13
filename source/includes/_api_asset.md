@@ -102,6 +102,17 @@ Parameter         | Data Type     | Description   | Is Required
 **asset_class**   | string, enum  | Asset class of the image <br><br>enum: all, pre, thumb | true
 quality           | string, enum  | Quality of image <br><br>enum: low, med, high
 
+### Error Status Codes
+
+HTTP Status Code    | Data Type   
+------------------- | ----------- 
+200 | Request succeeded
+301 | Asset has been moved to a different archiver
+400 | Unexpected or non-identifiable arguments are supplied
+401 | Unauthorized due to invalid session cookie
+403 | Forbidden due to the user missing the necessary privileges
+404 | Image was not found
+
 <!--===================================================================-->
 ## Get Video
 
@@ -130,6 +141,18 @@ Parameter                 | Data Type     | Description   | Is Required
 quality                   | string, enum  | Indicates requested resolution if multiple are available. <br><br>enum: low, mid, high
 playback_start_timestamp  | string        | EE timestamp where playback will begin. This value should be between the start_timestamp and end_timestamp.
 time_offset               | string        | Start the video stream N ms into the specified timespan. Allows playing of a smaller segment.
+
+### Error Status Codes
+
+HTTP Status Code    | Data Type   
+------------------- | ----------- 
+200 | Request succeeded
+301 | Asset has been moved to a different archiver
+400 | Unexpected or non-identifiable arguments are supplied
+401 | Unauthorized due to invalid session cookie
+403 | Forbidden due to the user missing the necessary privileges
+404 | Video was not found
+
 <!--===================================================================-->
 ## Get List of Images
 
@@ -158,6 +181,16 @@ Parameter           | Data Type     | Description   | Is Required
 **asset_class**     | string, enum  | Asset class of the image <br><br>enum: all, pre, thumb | true
 end_timestamp       | string        | End Timestamp in EEN format: YYYYMMDDHHMMSS.NNN
 count               | int           | Used instead or with an 'end_timestamp' argument. If used with an 'end_timestamp' argument, the count is a limit on the number of entries to return, starting at the starting timestamp. If used without the e argument, returns N entries. Support negative value, which returns N entries before, sorted in reverse order - example -5 return 5 events previous to the specified time.
+
+### Error Status Codes
+
+HTTP Status Code    | Data Type   
+------------------- | ----------- 
+200 | Request succeeded
+301 | Asset has been moved to a different archiver
+400 | Unexpected or non-identifiable arguments are supplied
+401 | Unauthorized due to invalid session cookie
+403 | Forbidden due to the user missing the necessary privileges
 
 <!--===================================================================-->
 ## Get List of Videos
@@ -188,6 +221,15 @@ end_timestamp       | string        | End Timestamp in EEN format: YYYYMMDDHHMMS
 count               | int           | Used instead or with an 'end_timestamp' argument. If used with an 'end_timestamp' argument, the count is a limit on the number of entries to return, starting at the starting timestamp. If used without the e argument, returns N entries. Support negative value, which returns N entries before, sorted in reverse order - example -5 return 5 events previous to the specified time.
 options             | string, enum  | Additional modifier options. 'coalesce' = coalesces spans together. <br><br>enum: coalesce
 
+### Error Status Codes
+
+HTTP Status Code    | Data Type   
+------------------- | ----------- 
+200 | Request succeeded
+301 | Asset has been moved to a different archiver
+400 | Unexpected or non-identifiable arguments are supplied
+401 | Unauthorized due to invalid session cookie
+403 | Forbidden due to the user missing the necessary privileges
 
 <!--===================================================================-->
 ## Create Timelapse Video
@@ -211,6 +253,17 @@ Parameter       | Data Type   | Description
 ---------       | ----------- | -----------
 id              | string      | UUID of the time lapse request
 
+### Error Status Codes
+
+HTTP Status Code    | Data Type   
+------------------- | ----------- 
+202 | Request accepted
+400 | Unexpected or non-identifiable arguments are supplied
+401 | Unauthorized due to invalid session cookie
+403 | Forbidden due to the user missing the necessary privileges
+404 | Device matching the device_id was not found
+463 | Unable to communicate with the camera, contact support
+
 <!--===================================================================-->
 ## Retrieve Timelapse Video
 
@@ -231,3 +284,14 @@ Parameter           | Data Type     | Description
 ---------           | -----------   | ----------- 
 percent_complete    | float         | Id of the time lapse, which was returned when it was created/requested
 **device_id**       | string        | Id of the device associated with the time lapse when it was created/requested | true
+
+### Error Status Codes
+
+HTTP Status Code    | Data Type   
+------------------- | ----------- 
+200 | Request succeeded
+400 | Unexpected or non-identifiable arguments are supplied
+401 | Unauthorized due to invalid session cookie
+403 | Forbidden due to the user missing the necessary privileges
+404 | id or device_id not found
+463 | Unable to communicate with the camera, contact support
