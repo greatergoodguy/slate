@@ -38,6 +38,15 @@ camera_ids 	| array[string] | Array of camera ids who had recording started for
 layout_name | string 		| Name of layout at the time the recording started
 user_id 	| string 		| Id of the user who started/stopped the recording
 
+### Error Status Codes
+
+HTTP Status Code    | Data Type   
+------------------- | ----------- 
+200 | Request succeeded
+400 | Unexpected or non-identifiable arguments are supplied
+401 | Unauthorized due to invalid session cookie
+403 | Forbidden due to the user missing the necessary privileges
+
 <!--===================================================================-->
 
 ## Search Annotations
@@ -55,4 +64,16 @@ Parameter  			| Data Type   | Description   			| Is Required
 end_timestamp 		| string      | End timestamp (in EEN format) to use to limit search results. Defaults to now. 	| 
 
 ### Response
-array[object]
+
+				    |
+------------------- |
+array[object] 		| 
+
+### Error Status Codes
+
+HTTP Status Code    | Data Type   
+------------------- | ----------- 
+200 | Request succeeded
+400 | Unexpected or non-identifiable arguments are supplied
+401 | Unauthorized due to invalid session cookie
+403 | Forbidden due to the user missing the necessary privileges

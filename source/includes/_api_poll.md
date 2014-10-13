@@ -157,6 +157,8 @@ Parameter       | Data Type   | Description
 ---------       | ----------- | -----------
 PostPollCameras | json        | Cameras
 
+
+
 <!--===================================================================-->
 ## Polling
 
@@ -175,3 +177,14 @@ Used to receive updates on real-time changes. Either requires a valid 'ee-poll-s
 Parameter       | Data Type   | Description
 ---------       | ----------- | -----------
 token           | string      | Token from POST /poll. Not required if you have the 'ee-poll-ses' cookie from POST /poll.
+
+### Error Status Codes
+
+HTTP Status Code    | Data Type   
+------------------- | ----------- 
+200 | Request succeeded
+400	| Unexpected or non-identifiable arguments are supplied
+401	| Unauthorized due to invalid session cookie
+403	| Forbidden due to the user missing the necessary privileges
+
+
