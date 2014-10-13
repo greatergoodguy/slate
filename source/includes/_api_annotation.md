@@ -32,6 +32,15 @@ Parameter       | Data Type   	| Description
 **timestamp**   | string      	| Timestamp associated with the annotation, in EEN format.
 **data**   		| json   		| JSON Object representing the data associated with the annotation. No predefined data fields required.
 
+### Error Status Codes
+
+HTTP Status Code    | Data Type   
+------------------- | ----------- 
+200	| Request succeeded
+400	| Unexpected or non-identifiable arguments are supplied
+401	| Unauthorized due to invalid session cookie
+403	| Forbidden due to the user missing the necessary privileges
+
 <!--===================================================================-->
 ## Update Annotation
 
@@ -59,4 +68,11 @@ Parameter       | Data Type   	| Description  | Is Required
 **data**   		| json   		| JSON Object representing the data to update the annotation with. No predefined data fields required. | true
 atype  			| string, enum  | The type of annotation update to make. Defaults to 'mod'. 'mod' is a simple modification of the annotation. 'hb' indicates a heartbeat event, adding information on parameters that have changed and extending duration. 'end' indicates the end of the event, and no 'hb' with a later timestamp will be accepted. <br><br>enum: end, hb, mod |
 
+### Error Status Codes
 
+HTTP Status Code    | Data Type   
+------------------- | ----------- 
+200 | Request succeeded
+400	| Unexpected or non-identifiable arguments are supplied
+401	| Unauthorized due to invalid session cookie
+403	| Forbidden due to the user missing the necessary privileges
