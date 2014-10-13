@@ -206,6 +206,8 @@ id   			| string      | ID of the user having their password changed. Optional. 
 **password**   	| string      | New password | true
 current_password| string      | Current password of the user. Optional. If "id" argument is empty, or is equal to the authenticated user's id, then this is required. | true
 
+### Error Status Codes
+
 HTTP Status Code    | Data Type   
 ------------------- | ----------- 
 401 | Unauthorized due to invalid session cookie
@@ -227,6 +229,8 @@ Parameter  		| Data Type   | Description   	| Is Required
 ---------  		| ----------- | -----------   	| -----------
 account_id   	| string      | ID of the account to login to. Optional. Defaults to the account ID that the user belongs to. | false
 
+### Error Status Codes
+
 HTTP Status Code    | Data Type   
 ------------------- | ----------- 
 401 | Unauthorized due to invalid session cookie
@@ -242,6 +246,8 @@ Log out user and invalidate HTTP session cookie
 ### HTTP Request
 
 `POST https://login.eagleeyenetworks.com/g/aaa/logout`
+
+### Error Status Codes
 
 HTTP Status Code    | Data Type   
 ------------------- | ----------- 
