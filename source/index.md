@@ -3,13 +3,11 @@ title: API Reference
 
 language_tabs:
   - shell: cURL
-  - java: Android
-  - objc: iOS
 
 toc_footers:
   - <a href='#'>Sign Up for a Developer Key</a>
   - <a href='http://github.com/tripit/slate'>Documentation Powered by Slate</a>
-  - <a href='https://github.com/greatergoodguy/slate'>Submit issues with the docs here</a>
+  - <a href='https://github.com/greatergoodguy/slate'>Submit documentation issues here</a>
 
 includes:
   - introduction

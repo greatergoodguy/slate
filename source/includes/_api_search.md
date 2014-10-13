@@ -8,25 +8,51 @@ This service allows for search across various types of data. Currenlty only supp
 <!--===================================================================-->
 ## Search Recordings
 
-> Request
+Returns array of recording objects that match a search value.
 
-```shell
-```
+### HTTP Request
 
-> Json Response
+`GET https://login.eagleeyenetworks.com/g/search/recordings`
 
-```json
-```
+Parameter  	| Data Type   | Description   
+---------  	| ----------- | -----------   
+**value**   | string      | Value to search for
+
+### Response Json Attributes
+
+Parameter               	| Data Type     | Description
+---------               	| -----------   | -----------
+_key 						| string 		| Unique identifier (within the user's account) of the recording
+current_recording_timestamp | string 		| Timestamp of when the current recording (if any) was started
+recording_%s_start 			| RecordingInfo | Object of info about the recording start event, where '%s' is the timestamp it started. Could be N number of these.
+recording_%s_stop 			| RecordingInfo | Object of info about the recording stop event, where '%s' is the timestamp it started. Must have a matching 'recording_%s_start' event. Could be N number of these.
+recording_%s_meta 			| object 		| Object of info about the recording, where '%s' is the timestamp it started. Must have a matching 'recording_%s_start' event.
+
+### RecordingInfo Json Attributes
+
+Parameter   | Data Type     | Description
+---------   | -----------   | -----------
+timestamp 	| string 		| Timestamp the recording was started, in EEN format.
+layout_id 	| boolean 		| Id of a layout the recording was started for
+camera_ids 	| array[string] | Array of camera ids who had recording started for
+layout_name | string 		| Name of layout at the time the recording started
+user_id 	| string 		| Id of the user who started/stopped the recording
 
 <!--===================================================================-->
+
 ## Search Annotations
 
-> Request
+Returns array of annotation objects that match a search value.
 
-```shell
-```
+### HTTP Request
 
-> Json Response
+`GET https://login.eagleeyenetworks.com/g/search/recordings`
 
-```json
-```
+Parameter  			| Data Type   | Description   			| Is Required
+---------  			| ----------- | -----------   			| -----------
+**value**   		| string      | Value to search for 	| true
+**start_timestamp** | string      | Start timestamp (in EEN format) to use to limit search results 	| true
+end_timestamp 		| string      | End timestamp (in EEN format) to use to limit search results. Defaults to now. 	| 
+
+### Response
+array[object]

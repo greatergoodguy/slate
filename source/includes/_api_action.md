@@ -13,7 +13,6 @@ Given the macro nature and the number of devices and operations that may occur, 
 > Request
 
 ```shell
-TODO
 ```
 
 Used to turn on recording for 1 camera, all cameras, or all cameras in a specific layout. The result of this to the affected cameras will be that all 'operating_hours' schedules are removed, 'camera_on' is set to 1 (on), and 'video_capture_mode' is set to 'always'.
@@ -34,7 +33,6 @@ recording_key   | string      | A key used to tag this recording. Can be used to
 > Request
 
 ```shell
-TODO
 ```
 
 Used to turn off recording for 1 camera, all cameras, or all cameras in a specific layout. The result of this to the affected cameras will be that all 'operating_hours' schedules are removed, 'camera_on' is set to 0 (off), and 'video_capture_mode' is set back to 'event' (the default).
@@ -70,11 +68,6 @@ Used to turn on all cameras in the caller user’s account. Caller must be an ac
 
 ```shell
 curl --cookie "videobank_sessionid=[VIDEOBANK_SESSIONID]" --request POST https://login.eagleeyenetworks.com/g/action/alloff
-```
-
-> Json Response
-
-```json
 ```
 
 Used to turn off all cameras in the caller user’s account. Caller must be an account_superuser.
